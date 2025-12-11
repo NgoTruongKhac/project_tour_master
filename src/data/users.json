@@ -1,0 +1,42 @@
+[
+  {
+    "userId": 1,
+    "username": "john_doe",
+    "email": "john.doe@example.com",
+    "password": "Pass123!",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "phone": "0987123456"
+  },
+  {
+    "userId": 2,
+    "username": "anna_smith",
+    "email": "anna.smith@example.com",
+    "password": "Anna2025!",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "phone": "0912345678"
+  },
+  {
+    "userId": 3,
+    "username": "michael_lee",
+    "email": "michael.lee@example.com",
+    "password": "M1chael#Lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "phone": "0933456789"
+  },
+  {
+    "userId": 4,
+    "username": "sara_kim",
+    "email": "sara.kim@example.com",
+    "password": "Sara_Kim88",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "phone": "0978234567"
+  },
+  {
+    "userId": 5,
+    "username": "tom_nguyen",
+    "email": "tom.nguyen@example.com",
+    "password": "Tom_Nguyen!99",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "phone": "0909876543"
+  }
+]
