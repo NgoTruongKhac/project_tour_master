@@ -1,21 +1,9 @@
 /* src/global.css */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap");
 
-@import "tailwindcss";
-
-@theme {
-  /* 1. Cấu hình Màu sắc */
-  --color-primary: #ff9436;
-  --color-secondary: #16b0f8;
-  --color-primary-hover: #e68530;
-  --color-secondary-hover: #139de0;
-  --color-dark: #1f2937;
-  --color-light: #f3f4f6;
-
-  /* 2. Cấu hình Font chữ */
-  --font-sans: "Poppins", sans-serif;
-  --font-heading: "Montserrat", sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   h1,

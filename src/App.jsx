@@ -1,13 +1,9 @@
-import { useState } from "react";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
-      <h1 className="text-4xl underline text-primary">
-        Welcome to web tour master
-      </h1>
+      <LoginPage />
     </div>
   );
 }
