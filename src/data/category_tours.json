@@ -1,0 +1,247 @@
+[
+  {
+    "id": 1,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_Indochine%20Premium%20r.jpg",
+    "category": "Miền Bắc",
+    "destination": "Quãng Ninh",
+    "destination_slug": "quang-ninh"
+  },
+  {
+    "id": 2,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_Lung%20Cu%20Flagpole_1.jpg",
+    "category": "Miền Bắc",
+    "destination": "Hà Giang",
+    "destination_slug": "ha-giang"
+  },
+  {
+    "id": 3,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_Guom%20Lake%20or%20Ho%20Guom,%20Ha%20Noi,.jpg",
+    "category": "Miền Bắc",
+    "destination": "Hà Nội",
+    "destination_slug": "ha-noi"
+  },
+  {
+    "id": 4,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_DINH%20FANSIPAN.jpg",
+    "category": "Miền Bắc",
+    "destination": "Lào Cai",
+    "destination_slug": "lao-cai"
+  },
+  {
+    "id": 5,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_CAO%20BANG%20OVER%20VIEW%20(7).jpg",
+    "category": "Miền Bắc",
+    "destination": "Cao Bằng",
+    "destination_slug": "cao-bang"
+  },
+  {
+    "id": 6,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_Cau%20Vang%20-%20Bana%20Hill%20(2).jpg",
+    "category": "Miền Trung",
+    "destination": "Đà Nắng",
+    "destination_slug": "da-nang"
+  },
+  {
+    "id": 7,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_Vin%20Wonder%20(3).jpg",
+    "category": "Miền Trung",
+    "destination": "Nha Trang",
+    "destination_slug": "nha-trang"
+  },
+  {
+    "id": 8,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_Hoi%20An%20ancient%20town%20(6).jpg",
+    "category": "Miền Trung",
+    "destination": "Hội An",
+    "destination_slug": "hoi-an"
+  },
+  {
+    "id": 9,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_DAI%20NOI%20(26).jpg",
+    "category": "Miền Trung",
+    "destination": "Huế",
+    "destination_slug": "huế"
+  },
+  {
+    "id": 10,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_Doi%20Cat%20(1)-2.jpg",
+    "category": "Miền Trung",
+    "destination": "Phan Thiết",
+    "destination_slug": "phan-thiet"
+  },
+  {
+    "id": 11,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_BAI%20SAO.jpg",
+    "category": "Miền Đông Nam Bộ",
+    "destination": "Bà Rịa - Vũng Tàu",
+    "destination_slug": "vung-tau"
+  },
+  {
+    "id": 12,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_LANMARK%2081%20SKYVIEW%20(2)%20resize.jpg",
+    "category": "Miền Đông Nam Bộ",
+    "destination": "TP. Hồ Chí Minh",
+    "destination_slug": "ho-chi-minh"
+  },
+  {
+    "id": 13,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_dc_240201_SUN%20WORLD%20BA%20DEN-CAP%20TREO%20VAN%20SON%20(19).jpg",
+    "category": "Miền Đông Nam Bộ",
+    "destination": "Tây Ninh",
+    "destination_slug": "tay-ninh"
+  },
+  {
+    "id": 14,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_VQG%20NAM%20CAT%20TIEN%20(5).jpg",
+    "category": "Miền Đông Nam Bộ",
+    "destination": "Đồng Nai",
+    "destination_slug": "dong-nai"
+  },
+  {
+    "id": 15,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240726_DINH%20TINH%20YEU%20-%20BAI%20NHAT%20(1).jpg",
+    "category": "Miền Đông Nam Bộ",
+    "destination": "Côn Đảo",
+    "destination_slug": "con-dao"
+  },
+  {
+    "id": 16,
+    "img_url": "https://th.bing.com/th/id/OIP.3w3cDAUesTw-zRCWPlyNugHaEK?w=266&h=180&c=7&r=0&o=7&cb=ucfimg2&dpr=1.5&pid=1.7&rm=3&ucfimg=1",
+    "category": "Miền Tây Nam Bộ",
+    "destination": "Phú Quốc",
+    "destination_slug": "phu-quoc"
+  },
+  {
+    "id": 17,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240716_CHO%20NOI%20CAI%20RANG%20(4).jpg",
+    "category": "Miền Tây Nam Bộ",
+    "destination": "Cần Thơ",
+    "destination_slug": "can-tho"
+  },
+  {
+    "id": 18,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_VQG%20MUI%20CA%20MAU%20(2).jpg",
+    "category": "Miền Tây Nam Bộ",
+    "destination": "Cà Mau",
+    "destination_slug": "ca-mau"
+  },
+  {
+    "id": 19,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240716_NONG%20TRAI%20HAI%20VAN%20-%20VAM%20HO%20(10).jpg",
+    "category": "Miền Tây Nam Bộ",
+    "destination": "Bến Tre",
+    "destination_slug": "ben-tre"
+  },
+  {
+    "id": 20,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_CANH%20DONG%20SEN%20DONG%20THAP%20(3).jpg",
+    "category": "Miền Tây Nam Bộ",
+    "destination": "Đồng Tháp",
+    "destination_slug": "dong-thap"
+  },
+  {
+    "id": 21,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240729_RUNG%20TRAM%20TRA%20SU%20(1).jpg",
+    "category": "Miền Tây Nam Bộ",
+    "destination": "An Giang",
+    "destination_slug": "an-giang"
+  },
+  {
+    "id": 22,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240812_Wat%20Arun.jpg",
+    "category": "Châu Á",
+    "destination": "Thái Lan",
+    "destination_slug": "thai-lan"
+  },
+  {
+    "id": 23,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_dc_220601_Marina%20Bay%20Sands-Singapore-1.jpg",
+    "category": "Châu Á",
+    "destination": "Singapore",
+    "destination_slug": "singapore"
+  },
+  {
+    "id": 24,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_230103_Tokyo%20Tower%20-%20Sakura.jpg",
+    "category": "Châu Á",
+    "destination": "Nhật Bản",
+    "destination_slug": "nhat-ban"
+  },
+  {
+    "id": 25,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240723_shutterstock_1314564443_resize.jpg",
+    "category": "Châu Á",
+    "destination": "Hàn Quốc",
+    "destination_slug": "han-quoc"
+  },
+  {
+    "id": 26,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240723_Great%20Wall%20of%20China%20(Van%20Ly%20Truong%20Thanh%202)_.jpg",
+    "category": "Châu Á",
+    "destination": "Trung Quốc",
+    "destination_slug": "trung-quoc"
+  },
+  {
+    "id": 27,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240925_Th%C3%A1p%20Eiffel%20(%C4%90%C3%B4ng).jpg",
+    "category": "Châu Âu",
+    "destination": "Pháp",
+    "destination_slug": "phap"
+  },
+  {
+    "id": 28,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240801_Venice.jpg",
+    "category": "Châu Âu",
+    "destination": "Ý",
+    "destination_slug": "y"
+  },
+  {
+    "id": 29,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240925_L%C3%A0ng%20Iseltwald%20-%20%C4%90%C3%B4ng.jpg",
+    "category": "Châu Âu",
+    "destination": "Thuỹ Sĩ",
+    "destination_slug": "thuy-si"
+  },
+  {
+    "id": 30,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_221214_Big%20Ben%20with%20flag%201200-800px.jpg",
+    "category": "Châu Âu",
+    "destination": "Anh",
+    "destination_slug": "anh"
+  },
+  {
+    "id": 31,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_220117_White%20House.jpg",
+    "category": "Châu Mỹ",
+    "destination": "Mỹ",
+    "destination_slug": "my"
+  },
+  {
+    "id": 32,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240715_dc_220117_shutterstock_212408890.jpg",
+    "category": "Châu Mỹ",
+    "destination": "Chicago",
+    "destination_slug": "chicago"
+  },
+  {
+    "id": 33,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_Brazil.jpg",
+    "category": "Châu Mỹ",
+    "destination": "Brazil",
+    "destination_slug": "brazil"
+  },
+  {
+    "id": 34,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_Argentina.jpg",
+    "category": "Châu Mỹ",
+    "destination": "Argentina",
+    "destination_slug": "argentina"
+  },
+  {
+    "id": 35,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_Mexico.jpg",
+    "category": "Châu Mỹ",
+    "destination": "Mexico",
+    "destination_slug": "mexico"
+  }
+]

@@ -61,7 +61,7 @@ const Carousel = () => {
   }, [maxIndex]);
 
   return (
-    <div className="w-full px-4 py-16 bg-gradient-to-br ">
+    <div className="w-full px-4 mt-12 mb-4 bg-gradient-to-br ">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -69,7 +69,9 @@ const Carousel = () => {
             Khám Phá Những Địa Điểm Nổi Bật
           </h2>
           <p className="font-sans text-xl text-dark">
-            Lưu lại khoảnh khắc đẹp nhất cùng tour master
+            Lưu lại khoảnh khắc đẹp nhất cùng{" "}
+            <span className="text-primary">Tour </span>
+            <span className="text-secondary">Master</span>
           </p>
         </div>
 
@@ -128,7 +130,7 @@ const Carousel = () => {
                       </span>
                       <h3 className="mb-1 text-xl font-bold">{image.title}</h3>
                       <p className="text-sm text-gray-300 transition-opacity duration-300 delay-100 opacity-0 group-hover/card:opacity-100">
-                        Khám phá vẻ đẹp tuyệt vời
+                        Khám phá ngay bây giờ
                       </p>
                     </div>
                   </div>
@@ -168,7 +170,6 @@ const Carousel = () => {
           ))}
         </div>
 
-        {/* Counter */}
         <div className="mt-6 text-sm text-center text-gray-400">
           {currentIndex + 1} / {maxIndex + 1}
         </div>
