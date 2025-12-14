@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop",
+    "title": "Núi Non Hùng Vĩ",
+    "category": "Thiên nhiên"
+  },
+  {
+    "id": 2,
+    "url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=500&fit=crop",
+    "title": "Rừng Xanh",
+    "category": "Phong cảnh"
+  },
+  {
+    "id": 3,
+    "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=500&fit=crop",
+    "title": "Biển Cả",
+    "category": "Đại dương"
+  },
+  {
+    "id": 4,
+    "url": "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&h=500&fit=crop",
+    "title": "Bình Minh",
+    "category": "Hoàng hôn"
+  },
+  {
+    "id": 5,
+    "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=500&fit=crop",
+    "title": "Núi Tuyết",
+    "category": "Mùa đông"
+  },
+  {
+    "id": 6,
+    "url": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=500&fit=crop",
+    "title": "Thác Nước",
+    "category": "Thiên nhiên"
+  },
+  {
+    "id": 7,
+    "url": "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&h=500&fit=crop",
+    "title": "Hồ Nước",
+    "category": "Phong cảnh"
+  },
+  {
+    "id": 8,
+    "url": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=500&fit=crop",
+    "title": "Đồi Cỏ",
+    "category": "Thiên nhiên"
+  }
+]
