@@ -1,0 +1,43 @@
+{
+  "summary": {
+    "total_reviews": 6,
+    "average_score": 8.6
+  },
+  "reviews": [
+    {
+      "id": 1,
+      "user": "Ẩn danh",
+      "rating": 5,
+      "content": "Hơi dô tri với đứa k am hiểu nghệ thuật như mình. Nhưng cũng đáng trải nghiệm",
+      "date": "Đánh giá cách đây 119 tuần"
+    },
+    {
+      "id": 2,
+      "user": "Ẩn danh",
+      "rating": 5,
+      "content": "Một vị trí thực sự đẳng cấp thế giới ngay trung tâm Hồng Kông, và tầm nhìn từ bên ngoài tòa nhà cũng hoàn hảo không kém.",
+      "date": "Đánh giá cách đây 4 tuần"
+    },
+    {
+      "id": 3,
+      "user": "Ẩn danh",
+      "rating": 5,
+      "content": "Một bảo tàng nghệ thuật tuyệt đẹp trong một tòa nhà vừa đẹp vừa tối giản. Tất cả các triển lãm đều đáng để ghé thăm. Dễ dàng đến đó bằng MTR và xe buýt. Quán cà phê ở tầng 1 có tầm nhìn tuyệt đẹp ra biển.",
+      "date": "Đánh giá cách đây 4 tuần"
+    },
+    {
+      "id": 4,
+      "user": "Ẩn danh",
+      "rating": 5,
+      "content": "Tôi rất mong được tham quan các triển lãm khác trong tương lai. Cảm ơn M+ Hong Kong!",
+      "date": "Đánh giá cách đây 8 tuần"
+    },
+    {
+      "id": 5,
+      "user": "Ẩn danh",
+      "rating": 5,
+      "content": "Ngoài ra, Mosu cũng ở đây, nhưng đã đóng cửa khi chúng tôi đến (hãy kiểm tra ngày mở cửa của họ nếu bạn định dùng bữa tại đây). Nhà hàng không có nhiều lựa chọn, vì vậy hãy ăn thật no trước khi đến. Có một cửa hàng đồ ăn nhẹ nhỏ xung quanh khu vườn nếu bạn không ăn được ở các nhà hàng khác, họ phục vụ xíu mại, gà rán poppers và bánh tart trứng. Họ cũng có bia, cà phê và trà. Đồ ăn cũng rất ngon! (Họ có những lựa chọn tốt khác cho các bữa ăn lớn hơn hoặc nhiều hơn nhưng chúng tôi muốn ăn Mosu nên đã không thử những món bên trong 🤣)",
+      "date": "Đánh giá cách đây 4 tuần"
+    }
+  ]
+}
