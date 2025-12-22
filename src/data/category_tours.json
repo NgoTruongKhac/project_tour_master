@@ -243,5 +243,40 @@
     "category": "Châu Mỹ",
     "destination": "Mexico",
     "destination_slug": "mexico"
+  },
+  {
+    "id": 36,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_dc_180119_aicap.jpg",
+    "category": "Châu Phi",
+    "destination": "Ai Cập",
+    "destination_slug": "ai-cap"
+  },
+  {
+    "id": 37,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_NamPhi.jpg",
+    "category": "Châu Phi",
+    "destination": "Nam Phi",
+    "destination_slug": "nam-phi"
+  },
+  {
+    "id": 38,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_Kenya.jpg",
+    "category": "Châu Phi",
+    "destination": "Kenya",
+    "destination_slug": "kenya"
+  },
+  {
+    "id": 39,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_dg_170602_baobabs-large.jpg",
+    "category": "Châu Phi",
+    "destination": "Madagascar",
+    "destination_slug": "madagascar"
+  },
+  {
+    "id": 40,
+    "img_url": "https://s3-cmc.travel.com.vn/vtv-image/Images/Destination/dg_240606_Morocco.jpg",
+    "category": "Châu Phi",
+    "destination": "Morocco",
+    "destination_slug": "Morocco"
   }
 ]

@@ -91,7 +91,7 @@ export default function HomePage() {
   );
 
   const internationalCategories = categoryData.filter((item) =>
-    ["Châu Á", "Châu Âu", "Châu Mỹ"].includes(item.category)
+    ["Châu Á", "Châu Âu", "Châu Mỹ", "Châu Phi"].includes(item.category)
   );
 
   const domesticCategoryList = [
@@ -100,7 +100,12 @@ export default function HomePage() {
     "Miền Đông Nam Bộ",
     "Miền Tây Nam Bộ",
   ];
-  const internationalCategoryList = ["Châu Á", "Châu Âu", "Châu Mỹ"];
+  const internationalCategoryList = [
+    "Châu Á",
+    "Châu Âu",
+    "Châu Mỹ",
+    "Châu Phi",
+  ];
 
   return (
     <div className="min-h-screen ">
