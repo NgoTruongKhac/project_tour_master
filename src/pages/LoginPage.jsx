@@ -3,6 +3,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import loginTheme from "../assets/login_theme.avif";
 import googleIcon from "../assets/google-icon.png";
 import logo from "../assets/logo_icon.png";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,7 +48,7 @@ const LoginPage = () => {
               </label>
               <input
                 type="text"
-                placeholder="Ví dụ: user@example.com"
+                placeholder="user@example.com"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition duration-200"
               />
             </div>
@@ -61,7 +62,7 @@ const LoginPage = () => {
 
               <div className="relative">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={!showPassword ? "password" : "text"}
                   placeholder="••••••••"
                   className="w-full px-4 py-3 pr-10 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition duration-200"
                 />
@@ -111,9 +112,12 @@ const LoginPage = () => {
 
           <div className="mt-8 text-center text-sm">
             <span className="text-gray-600">Bạn chưa có tài khoản? </span>
-            <a href="#" className="font-bold text-primary hover:underline">
+            <Link
+              to="/signup"
+              className="font-bold text-primary hover:underline"
+            >
               Đăng ký ngay
-            </a>
+            </Link>
           </div>
         </div>
       </div>

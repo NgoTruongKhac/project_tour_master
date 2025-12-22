@@ -1,25 +1,26 @@
-import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import HomePage from "./pages/HomePage";
 import CommentAndReview from "./components/CommentAndReview.jsx";
-import Carousel  from "./components/Carousel.jsx";
-import BookTour from "./pages/BookTour.jsx";
-import BookingPage from "./pages/BookingPage.jsx";
-import PaymentPage from "./pages/PaymentPage.jsx";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/comment" element={<CommentAndReview />} />
-          <Route path="/carousel" element={<Carousel />} />
-          <Route path="/bookingPage/:id" element={<BookingPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-          <Route path={"/bookTour"} element={<BookTour/>}></Route>
-      </Routes>
-    </div>
+    <BrowserRouter>
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+          </Routes>
+        </div>
+
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
