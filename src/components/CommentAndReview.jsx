@@ -173,7 +173,7 @@ const MPlusMuseumPage = () => {
                                                     <User size={16} className="text-gray-500" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-bold text-gray-800">{review.user}</p>
+                                                    <p className="text-sm font-bold text-gray-800">{review.username}</p>
                                                     <div className="flex">{renderStars(review.rating)}</div>
                                                 </div>
                                             </div>
