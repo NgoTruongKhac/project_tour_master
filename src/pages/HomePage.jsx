@@ -1,10 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import categoryData from "../data/category_tours.json";
 import { useState } from "react";
 // Destination Card Component
 const DestinationCard = ({ destination, imgUrl, slug }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/filter?destination=${slug}`);
+  };
+
   return (
-    <div className="relative overflow-hidden transition-all duration-300 shadow-lg cursor-pointer group rounded-xl hover:shadow-2xl">
+    <div
+      onClick={handleClick}
+      className="relative overflow-hidden transition-all duration-300 shadow-lg cursor-pointer group rounded-xl hover:shadow-2xl"
+    >
       <div className="relative h-64 overflow-hidden">
         <img
           src={imgUrl}
