@@ -22,10 +22,10 @@ function App() {
           </Routes>
         </div>
 
-        <Footer />
-      </div>
-    </BrowserRouter>
-  );
+                <Footer/>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;

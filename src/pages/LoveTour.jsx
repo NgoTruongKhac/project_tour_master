@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-// 1. Dữ liệu giả (Mock Data)
+
 const MOCK_DATA = [
     {
         id: 1,
         name: "Tour Vịnh Hạ Long - Tuyến 2 (Hang Sửng Sốt - Đảo Ti Tốp) 5 Sao",
         location: "Hạ Long, Quảng Ninh",
-        image: "https://images.unsplash.com/photo-1559592413-7cec430aaec3?q=80&w=400",
+        image: "https://s3-cmc.travel.com.vn/vtv-image/Images/Tour/tfd__1_7767_cauthehuc.webp",
         rating: 9.2,
         reviews: 231,
         oldPrice: 950000,
@@ -16,17 +16,17 @@ const MOCK_DATA = [
         id: 2,
         name: "Vé VinWonders Phú Quốc - Công viên chủ đề lớn nhất Việt Nam",
         location: "Phú Quốc, Kiên Giang",
-        image: "https://images.unsplash.com/photo-1596566453181-e23a63587b92?q=80&w=400",
+        image: "https://s3-cmc.travel.com.vn/vtv-image/Images/Tour/tfd__1_5462_0e0a9779.webp",
         rating: 8.8,
         reviews: 1205,
         oldPrice: 1050000,
-        newPrice: 880000,
+        newPrice: 850000,
     },
     {
         id: 3,
         name: "Tour Săn Mây Cầu Gỗ Đà Lạt - Đón bình minh cực chill",
         location: "Đà Lạt, Lâm Đồng",
-        image: "https://images.unsplash.com/photo-1626019391038-d65691c9676e?q=80&w=400",
+        image: "https://s3-cmc.travel.com.vn/vtv-image/Images/Tour/tfd__1_7767_cauthehuc.webp",
         rating: 9.5,
         reviews: 85,
         oldPrice: 500000,
@@ -34,31 +34,46 @@ const MOCK_DATA = [
     }
 ];
 
-// 2. Component Card Tour (Sử dụng Tailwind)
-const TourCard = ({ data, onRemove }) => {
-    // Format tiền tệ
+
+const TourCard = ({data, onRemove}) => {
+
+    const [imgSrc, setImgSrc] = useState(data.image);
+
+
     const formatCurrency = (amount) =>
-        new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
+
+
+    const handleImageError = () => {
+
+        setImgSrc("https://placehold.co/400x400/e2e8f0/1e293b?text=No+Image");
+    };
 
     return (
-        <div className="flex bg-white rounded-lg shadow-sm border border-gray-100 mb-4 overflow-hidden relative hover:shadow-md transition-shadow duration-200">
-
+        <div
+            className="flex bg-white rounded-lg shadow-sm border border-gray-100 mb-4 overflow-hidden relative hover:shadow-md transition-shadow duration-200">
             {/* Cột Trái: Hình ảnh */}
-            <div className="w-32 h-32 flex-shrink-0 relative">
+            <div className="w-32 h-32 flex-shrink-0 relative bg-gray-200">
                 <img
-                    src={data.image}
+                    src={imgSrc}
                     alt={data.name}
+                    onError={handleImageError}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                 />
-                {/* Nút tim (Absolute trên ảnh) */}
+
+
                 <button
                     onClick={() => onRemove(data.id)}
-                    className="absolute top-2 left-2 bg-white/90 rounded-full p-1.5 shadow-sm hover:bg-white transition-colors"
+                    className="absolute top-2 left-2 bg-white/90 rounded-full p-1.5 shadow-sm hover:bg-white transition-colors group"
                     title="Bỏ yêu thích"
                 >
-                    {/* Icon tim SVG */}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         className="h-5 w-5 text-orange-500 fill-current group-hover:scale-110 transition-transform"
+                         viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd"
+                              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                              clipRule="evenodd"/>
                     </svg>
                 </button>
             </div>
@@ -66,26 +81,22 @@ const TourCard = ({ data, onRemove }) => {
             {/* Cột Phải: Thông tin */}
             <div className="flex-1 p-3 flex flex-col justify-between">
                 <div>
-                    {/* Tên tour: Giới hạn 2 dòng */}
                     <h3 className="text-sm font-bold text-gray-800 leading-tight line-clamp-2 mb-1">
                         {data.name}
                     </h3>
 
-                    {/* Địa điểm */}
                     <div className="text-xs text-gray-500 flex items-center gap-1 mb-2">
                         <span>📍</span> {data.location}
                     </div>
 
-                    {/* Đánh giá */}
                     <div className="flex items-center text-xs">
-            <span className="text-blue-500 font-bold bg-blue-50 px-1.5 py-0.5 rounded mr-2">
-              {data.rating}/10
-            </span>
+                        <span className="text-blue-500 font-bold bg-blue-50 px-1.5 py-0.5 rounded mr-2">
+                            {data.rating}
+                        </span>
                         <span className="text-gray-400">({data.reviews})</span>
                     </div>
                 </div>
 
-                {/* Giá tiền: Đẩy xuống đáy */}
                 <div className="text-right mt-2">
                     <div className="text-xs text-gray-400 line-through decoration-gray-400">
                         {formatCurrency(data.oldPrice)}
@@ -99,12 +110,11 @@ const TourCard = ({ data, onRemove }) => {
     );
 };
 
-// 3. Main App
+
 export default function App() {
     const [favorites, setFavorites] = useState(MOCK_DATA);
 
     const handleRemoveFavorite = (id) => {
-        // Confirm đơn giản, thực tế có thể dùng Modal đẹp hơn
         if (window.confirm("Bỏ lưu tour này nhé?")) {
             setFavorites(favorites.filter(item => item.id !== id));
         }
@@ -112,13 +122,13 @@ export default function App() {
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans">
-            {/* Giả lập khung Mobile: max-w-md và căn giữa */}
-            <div className="max-w-md mx-auto bg-white min-h-screen shadow-lg">
+            <div className="max-w-md mx-auto bg-white min-h-screen shadow-lg pb-10">
 
-                {/* Header: Sticky dính trên cùng */}
-                <header className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between">
+                {/* Header */}
+                <header
+                    className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between shadow-sm">
                     <h2 className="text-lg font-bold text-gray-800">Đã lưu (Saved)</h2>
-                    <span className="text-sm text-blue-500 font-semibold cursor-pointer">Sửa</span>
+                    <button className="text-sm text-blue-500 font-semibold hover:text-blue-600">Sửa</button>
                 </header>
 
                 {/* List Content */}
@@ -136,18 +146,20 @@ export default function App() {
                             />
                         ))
                     ) : (
-                        <div className="flex flex-col items-center justify-center mt-10 text-center">
-                            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 text-2xl">
+                        <div className="flex flex-col items-center justify-center mt-20 text-center animate-fade-in">
+                            <div
+                                className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4 text-3xl">
                                 📂
                             </div>
-                            <p className="text-gray-500 text-sm">Danh sách trống trơn à!</p>
-                            <button className="mt-4 px-6 py-2 bg-blue-500 text-white text-sm font-bold rounded-full hover:bg-blue-600 transition">
+                            <p className="text-gray-500 text-sm mb-1">Danh sách trống trơn à!</p>
+                            <p className="text-xs text-gray-400 mb-6">Hãy lưu lại những nơi bạn muốn đến nhé</p>
+                            <button
+                                className="px-6 py-2.5 bg-blue-500 text-white text-sm font-bold rounded-full hover:bg-blue-600 transition shadow-lg shadow-blue-200">
                                 Khám phá ngay
                             </button>
                         </div>
                     )}
                 </div>
-
             </div>
         </div>
     );
