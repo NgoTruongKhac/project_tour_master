@@ -1,29 +1,26 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
-import CommentAndReview from "./components/CommentAndReview.jsx";
 import Footer from "./components/Footer";
-import PaymentPage from "./pages/PaymentPage.jsx";
-import BookingPage from "./pages/BookingPage.jsx";
-import BookingHistoryPage from "./pages/BookingHistoryPage.jsx";
+import FilterTourPage from "./pages/FilterTourPage";
 import LoveTour from "./pages/LoveTour.jsx";
+import Header from "./components/Header.jsx";
+
 function App() {
-    return (
-        <BrowserRouter>
-            <div className="flex flex-col min-h-screen">
-                <div className="flex-grow">
-                    <Routes>
-                        <Route path="/" element={<HomePage/>}/>
-                        <Route path="/login" element={<LoginPage/>}/>
-                        <Route path="/signup" element={<SignupPage/>}/>
-                        <Route path="/payment" element={<PaymentPage/>}/>
-                        <Route path="/loveTour" element={<LoveTour/>}/>
-                        <Route path="/booking/:id" element={<BookingPage/>}/>
-                        <Route path="/history" element={<BookingHistoryPage/>}/>
-                    </Routes>
-                </div>
+  return (
+    <BrowserRouter>
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-grow">
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/filter" element={<FilterTourPage />} />
+            <Route path="/love" element={<LoveTour />} />
+          </Routes>
+        </div>
 
                 <Footer/>
             </div>
