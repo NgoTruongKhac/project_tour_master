@@ -38,5 +38,13 @@
     "password": "Tom_Nguyen!99",
     "avatar": "https://i.pravatar.cc/150?img=55",
     "phone": "0909876543"
+  },
+  {
+    "userId": 6,
+    "username": "test",
+    "email": "test@gmail.com",
+    "password": "123",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "phone": "0123456789"
   }
 ]
