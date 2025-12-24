@@ -51,7 +51,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Cột 2: Về chúng tôi */}
           <div>
             <h3 className="text-white font-bold text-lg mb-6 font-heading">
               Về Tour Master
@@ -92,7 +91,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Cột 3: Hỗ trợ khách hàng */}
           <div>
             <h3 className="text-white font-bold text-lg mb-6 font-heading">
               Hỗ trợ khách hàng
@@ -141,7 +139,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Cột 4: Newsletter & Thanh toán */}
           <div>
             <h3 className="text-white font-bold text-lg mb-6 font-heading">
               Đăng ký nhận tin
@@ -151,7 +148,6 @@ const Footer = () => {
               email.
             </p>
 
-            {/* Form đăng ký */}
             <form className="mb-8" onSubmit={(e) => e.preventDefault()}>
               <div className="flex">
                 <input
@@ -165,12 +161,10 @@ const Footer = () => {
               </div>
             </form>
 
-            {/* Phương thức thanh toán */}
             <h4 className="text-white font-bold text-sm mb-4 font-heading">
               Chấp nhận thanh toán
             </h4>
             <div className="flex gap-2 text-gray-400">
-              {/* Giả lập icon thẻ */}
               <div className="bg-white p-1 rounded w-10 h-6 flex items-center justify-center">
                 <span className="text-[10px] font-bold text-blue-800">
                   VISA
@@ -193,16 +187,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* --- DÒNG KẺ NGANG --- */}
         <div className="border-t border-gray-800 my-8"></div>
 
-        {/* --- BOTTOM FOOTER --- */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500">
             Copyright © 2025 Tour Master. All rights reserved.
           </p>
 
-          {/* Social Icons */}
           <div className="flex gap-4">
             <a
               href="#"

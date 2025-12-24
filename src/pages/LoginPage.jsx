@@ -3,11 +3,55 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import loginTheme from "../assets/login_theme.avif";
 import googleIcon from "../assets/google-icon.png";
 import logo from "../assets/logo_icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import usersData from "../data/users.json";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    identifier: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+
   const togglePasswordView = () => setShowPassword(!showPassword);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    if (error) setError("");
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const user = usersData.find(
+      (u) =>
+        (u.email === formData.identifier ||
+          u.username === formData.identifier) &&
+        u.password === formData.password
+    );
+
+    if (user) {
+      const userToSave = {
+        id: user.userId,
+        name: user.username,
+        email: user.email,
+        avatar: user.avatar,
+      };
+
+      localStorage.setItem("user", JSON.stringify(userToSave));
+
+      navigate("/");
+      window.location.reload();
+    } else {
+      setError("Tên đăng nhập hoặc mật khẩu không chính xác!");
+    }
+  };
 
   return (
     <div className="min-h-screen flex font-sans text-dark">
@@ -18,7 +62,6 @@ const LoginPage = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/30"></div>
-
         <div className="relative z-10 text-white p-10 text-center">
           <h2 className="text-4xl font-heading font-bold mb-4">
             Khám phá thế giới cùng chúng tôi
@@ -41,15 +84,19 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Email hoặc Tên đăng nhập
               </label>
               <input
                 type="text"
+                name="identifier"
+                value={formData.identifier}
+                onChange={handleChange}
                 placeholder="user@example.com"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition duration-200"
+                required
               />
             </div>
 
@@ -59,14 +106,16 @@ const LoginPage = () => {
                   Mật khẩu
                 </label>
               </div>
-
               <div className="relative">
                 <input
                   type={!showPassword ? "password" : "text"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   placeholder="••••••••"
                   className="w-full px-4 py-3 pr-10 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition duration-200"
+                  required
                 />
-
                 <div
                   className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-500 hover:text-primary"
                   onClick={togglePasswordView}
@@ -78,7 +127,6 @@ const LoginPage = () => {
                   )}
                 </div>
               </div>
-
               <div className="mt-2 text-left">
                 <a
                   href="#"
@@ -88,6 +136,12 @@ const LoginPage = () => {
                 </a>
               </div>
             </div>
+
+            {error && (
+              <div className="text-red-500 text-sm text-center bg-red-50 p-2 rounded border border-red-100">
+                {error}
+              </div>
+            )}
 
             <button
               type="submit"
