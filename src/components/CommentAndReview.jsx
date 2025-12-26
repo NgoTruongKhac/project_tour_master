@@ -6,16 +6,16 @@ import {
 } from 'lucide-react';
 
 const MPlusMuseumPage = () => {
-    // --- KHỞI TẠO DỮ LIỆU TỪ JSON ---
-    // Kiểm tra xem jsonData có đúng cấu trúc không, nếu không thì dùng mảng rỗng để tránh lỗi crash app
+
+
     const initialReviews = jsonData.reviews || [];
     const summaryData = jsonData.summary || { average_score: 0, total_reviews: 0 };
 
-    // --- STATE ---
-    // 1. State danh sách đánh giá (Lấy từ JSON)
+
+
     const [reviews, setReviews] = useState(initialReviews);
 
-    // 2. Các State UI khác
+
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
     const [isWritingReview, setIsWritingReview] = useState(false);
     const [newRating, setNewRating] = useState(5);
@@ -36,7 +36,7 @@ const MPlusMuseumPage = () => {
         }
     ];
 
-    // --- FUNCTION ---
+
     const toggleFaq = (index) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
     };
@@ -68,12 +68,12 @@ const MPlusMuseumPage = () => {
         const newReviewObj = {
             id: Date.now(),
             user: "Tôi (Mới)",
-            date: "Vừa xong", // Hiển thị tạm thời
+            date: "Vừa xong", 
             rating: newRating,
             content: newComment
         };
 
-        // Thêm review mới vào đầu danh sách
+
         setReviews([newReviewObj, ...reviews]);
 
         // Reset form

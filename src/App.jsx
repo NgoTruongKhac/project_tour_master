@@ -6,6 +6,9 @@ import Footer from "./components/Footer";
 import FilterTourPage from "./pages/FilterTourPage";
 import LoveTour from "./pages/LoveTour.jsx";
 import Header from "./components/Header.jsx";
+import TourBookingPage from "./pages/TourBookingPage.jsx";
+import PaymentPage from "./pages/PaymentPage.jsx";
+import BookingHistoryPage from "./pages/BookingHistoryPage.jsx";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/filter" element={<FilterTourPage />} />
             <Route path="/love" element={<LoveTour />} />
+            <Route path="/payment" element={<PaymentPage/>}></Route>
+            <Route path="/booking/:id" element={<TourBookingPage/>}></Route>
+            <Route path="/my-booking" element={<BookingHistoryPage/>}></Route>
           </Routes>
         </div>
 
