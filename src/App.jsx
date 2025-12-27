@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import FilterTourPage from "./pages/FilterTourPage";
 import LoveTour from "./pages/LoveTour.jsx";
 import Header from "./components/Header.jsx";
+import TourDetail from "./pages/TourDetail.jsx";
 
 function App() {
   return (
@@ -18,14 +19,15 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/filter" element={<FilterTourPage />} />
+            <Route path="/tour/:tourId" element={<TourDetail />} />
             <Route path="/love" element={<LoveTour />} />
           </Routes>
         </div>
 
-                <Footer/>
-            </div>
-        </BrowserRouter>
-    );
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

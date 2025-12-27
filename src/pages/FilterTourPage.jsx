@@ -11,7 +11,7 @@ import {
 import { MapPin, Clock3, CalendarCheck } from "lucide-react";
 import DataTours from "../data/data_tours.json";
 import CategoryData from "../data/category_tours.json";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const PRICE_RANGES = {
   1: { min: 0, max: 5000000, label: "Dưới 5 triệu" },
@@ -32,6 +32,7 @@ export default function FilterTourPage() {
   const scrollContainerRefs = useRef({});
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const navigate = useNavigate();
   const currentPage = parseInt(searchParams.get("page")) || 1;
   const toursPerPage = 4;
 
@@ -155,6 +156,10 @@ export default function FilterTourPage() {
         behavior: "smooth",
       });
     }
+  };
+
+  const handleSelect = (tourId) => {
+    navigate(`/tour/${tourId}`);
   };
 
   return (
@@ -360,7 +365,10 @@ export default function FilterTourPage() {
                 {/* Content */}
                 <div className="flex flex-col justify-between flex-1 min-w-0">
                   <div>
-                    <h2 className="mb-3 text-lg font-semibold text-gray-900 line-clamp-2 md:text-xl">
+                    <h2
+                      onClick={() => handleSelect(tour.tourId)}
+                      className="mb-3 text-lg font-semibold text-gray-900 line-clamp-2 md:text-xl"
+                    >
                       {tour.title}
                     </h2>
 
