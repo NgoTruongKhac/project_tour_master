@@ -1,13 +1,5 @@
 import { useState, useRef, useMemo } from "react";
-import {
-  Filter,
-  Plane,
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Car,
-  Bus,
-} from "lucide-react";
+import { Filter, Plane, X, ChevronLeft, ChevronRight, Car } from "lucide-react";
 import { MapPin, Clock3, CalendarCheck } from "lucide-react";
 import DataTours from "../data/data_tours.json";
 import CategoryData from "../data/category_tours.json";
@@ -367,7 +359,7 @@ export default function FilterTourPage() {
                   <div>
                     <h2
                       onClick={() => handleSelect(tour.tourId)}
-                      className="mb-3 text-lg font-semibold text-gray-900 line-clamp-2 md:text-xl"
+                      className="mb-3 text-lg font-semibold text-gray-900 cursor-pointer line-clamp-2 md:text-xl"
                     >
                       {tour.title}
                     </h2>
