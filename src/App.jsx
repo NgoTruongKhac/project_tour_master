@@ -6,7 +6,9 @@ import Footer from "./components/Footer";
 import FilterTourPage from "./pages/FilterTourPage";
 import LoveTour from "./pages/LoveTour.jsx";
 import Header from "./components/Header.jsx";
-import TourDetail from "./pages/TourDetail.jsx";
+import TourBookingPage from "./pages/TourBookingPage.jsx";
+import PaymentPage from "./pages/PaymentPage.jsx";
+import BookingHistoryPage from "./pages/BookingHistoryPage.jsx";
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
             <Route path="/filter" element={<FilterTourPage />} />
             <Route path="/tour/:tourId" element={<TourDetail />} />
             <Route path="/love" element={<LoveTour />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/payment" element={<PaymentPage/>}></Route>
+            <Route path="/booking/:id" element={<TourBookingPage/>}></Route>
+            <Route path="/my-booking" element={<BookingHistoryPage/>}></Route>
           </Routes>
         </div>
 
