@@ -9,6 +9,7 @@ import Header from "./components/Header.jsx";
 import TourBookingPage from "./pages/TourBookingPage.jsx";
 import PaymentPage from "./pages/PaymentPage.jsx";
 import BookingHistoryPage from "./pages/BookingHistoryPage.jsx";
+import TourDetail from "./pages/TourDetail.jsx";
 
 function App() {
   return (

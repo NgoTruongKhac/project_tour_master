@@ -1,53 +1,502 @@
-{
-  "summary": {
-    "total_reviews": 6,
-    "average_score": 8.6
+[
+  {
+    "id": 1,
+    "tourId": 1,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Chuyến đi tuyệt vời! Cảnh Sapa mùa này đẹp mê hồn, hướng dẫn viên rất nhiệt tình.",
+    "date": "Đánh giá cách đây 2 tuần"
   },
-  "reviews": [
-    {
-      "id": 1,
-      "userId": 1,
-      "username": "john_doe",
-      "avatar": "https://i.pravatar.cc/150?img=11",
-      "rating": 5,
-      "content": "Hơi dô tri với đứa k am hiểu nghệ thuật như mình. Nhưng cũng đáng trải nghiệm",
-      "date": "Đánh giá cách đây 119 tuần"
-    },
-    {
-      "id": 2,
-      "userId": 2,
-      "username": "anna_smith",
-      "avatar": "https://i.pravatar.cc/150?img=22",
-      "rating": 5,
-      "content": "Một vị trí thực sự đẳng cấp thế giới ngay trung tâm Hồng Kông, và tầm nhìn từ bên ngoài tòa nhà cũng hoàn hảo không kém.",
-      "date": "Đánh giá cách đây 4 tuần"
-    },
-    {
-      "id": 3,
-      "userId": 3,
-      "username": "michael_lee",
-      "avatar": "https://i.pravatar.cc/150?img=33",
-      "rating": 5,
-      "content": "Một bảo tàng nghệ thuật tuyệt đẹp trong một tòa nhà vừa đẹp vừa tối giản. Tất cả các triển lãm đều đáng để ghé thăm. Dễ dàng đến đó bằng MTR và xe buýt. Quán cà phê ở tầng 1 có tầm nhìn tuyệt đẹp ra biển.",
-      "date": "Đánh giá cách đây 4 tuần"
-    },
-    {
-      "id": 4,
-      "userId": 4,
-      "username": "sara_kim",
-      "avatar": "https://i.pravatar.cc/150?img=44",
-      "rating": 5,
-      "content": "Tôi rất mong được tham quan các triển lãm khác trong tương lai. Cảm ơn M+ Hong Kong!",
-      "date": "Đánh giá cách đây 8 tuần"
-    },
-    {
-      "id": 5,
-      "userId": 5,
-      "username": "tom_nguyen",
-      "avatar": "https://i.pravatar.cc/150?img=55",
-      "rating": 5,
-      "content": "Ngoài ra, Mosu cũng ở đây, nhưng đã đóng cửa khi chúng tôi đến (hãy kiểm tra ngày mở cửa của họ nếu bạn định dùng bữa tại đây). Nhà hàng không có nhiều lựa chọn, vì vậy hãy ăn thật no trước khi đến. Có một cửa hàng đồ ăn nhẹ nhỏ xung quanh khu vườn nếu bạn không ăn được ở các nhà hàng khác, họ phục vụ xíu mại, gà rán poppers và bánh tart trứng. Họ cũng có bia, cà phê và trà. Đồ ăn cũng rất ngon! (Họ có những lựa chọn tốt khác cho các bữa ăn lớn hơn hoặc nhiều hơn nhưng chúng tôi muốn ăn Mosu nên đã không thử những món bên trong 🤣)",
-      "date": "Đánh giá cách đây 4 tuần"
-    }
-  ]
-}
+  {
+    "id": 2,
+    "tourId": 15,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 4,
+    "content": "Lịch trình tour Hạ Long - Ninh Bình rất hợp lý. Đồ ăn ngon, nhưng xe di chuyển hơi xóc một chút.",
+    "date": "Đánh giá cách đây 1 tháng"
+  },
+  {
+    "id": 3,
+    "tourId": 28,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 5,
+    "content": "Hà Giang mùa hoa tam giác mạch đẹp xuất sắc. Trải nghiệm ngủ nhà quẩy tấu rất thú vị!",
+    "date": "Đánh giá cách đây 3 ngày"
+  },
+  {
+    "id": 4,
+    "tourId": 50,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Nha Trang biển xanh cát trắng, khách sạn 4 sao view biển quá đẹp. Rất đáng tiền.",
+    "date": "Đánh giá cách đây 5 tuần"
+  },
+  {
+    "id": 5,
+    "tourId": 75,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 4,
+    "content": "Tour miền Tây sông nước rất vui, được ăn trái cây thoải mái. Hơi nắng nhưng vui.",
+    "date": "Đánh giá cách đây 1 tuần"
+  },
+  {
+    "id": 6,
+    "tourId": 140,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Hokkaido mùa này tuyết rơi lãng mạn lắm. Cua hoàng đế tươi ngon tuyệt vời.",
+    "date": "Đánh giá cách đây 2 tháng"
+  },
+  {
+    "id": 7,
+    "tourId": 5,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 3,
+    "content": "Mộc Châu đẹp nhưng đi vào dịp lễ đông quá, chờ đợi hơi lâu.",
+    "date": "Đánh giá cách đây 3 tuần"
+  },
+  {
+    "id": 8,
+    "tourId": 169,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 5,
+    "content": "Tour Châu Âu đi qua nhiều nước đẹp như tranh vẽ. Thụy Sĩ là điểm đến mình thích nhất.",
+    "date": "Đánh giá cách đây 10 ngày"
+  },
+  {
+    "id": 9,
+    "tourId": 68,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 4,
+    "content": "Vũng Tàu - Tây Ninh kết hợp khá thú vị. Cáp treo núi Bà Đen rất hiện đại.",
+    "date": "Đánh giá cách đây 4 tuần"
+  },
+  {
+    "id": 10,
+    "tourId": 120,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 5,
+    "content": "Thái Lan chưa bao giờ làm mình thất vọng. Đồ ăn ngon, shopping thả ga.",
+    "date": "Đánh giá cách đây 6 ngày"
+  },
+  {
+    "id": 11,
+    "tourId": 22,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Đông Bắc mùa này se lạnh thích thật. Chụp được cả nghìn tấm ảnh sống ảo.",
+    "date": "Đánh giá cách đây 1 tháng"
+  },
+  {
+    "id": 12,
+    "tourId": 8,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 4,
+    "content": "Hạ Long trên du thuyền rất chill. Đồ ăn trên tàu phong phú.",
+    "date": "Đánh giá cách đây 2 tuần"
+  },
+  {
+    "id": 13,
+    "tourId": 193,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 5,
+    "content": "Giấc mơ Mỹ đã thành hiện thực. New York quá sầm uất và tráng lệ.",
+    "date": "Đánh giá cách đây 3 tháng"
+  },
+  {
+    "id": 14,
+    "tourId": 41,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Huế mộng mơ, Đà Nẵng hiện đại. Combo du lịch miền Trung này rất đáng đi.",
+    "date": "Đánh giá cách đây 5 ngày"
+  },
+  {
+    "id": 15,
+    "tourId": 150,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 4,
+    "content": "Hàn Quốc mùa thu lá vàng đẹp nao lòng. Đảo Nami lãng mạn như phim.",
+    "date": "Đánh giá cách đây 2 tuần"
+  },
+  {
+    "id": 16,
+    "tourId": 2,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Dịch vụ 5 sao chuẩn. Du thuyền Hạ Long sang chảnh, nhân viên phục vụ chu đáo.",
+    "date": "Đánh giá cách đây 1 tuần"
+  },
+  {
+    "id": 17,
+    "tourId": 148,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 5,
+    "content": "Nhật Bản mùa hoa anh đào đẹp không tả nổi. Tour đi được nhiều điểm hot.",
+    "date": "Đánh giá cách đây 3 tuần"
+  },
+  {
+    "id": 18,
+    "tourId": 55,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 4,
+    "content": "Đà Lạt - Nha Trang là sự kết hợp hoàn hảo giữa núi và biển. Hải sản Nha Trang rất tươi.",
+    "date": "Đánh giá cách đây 1 tháng"
+  },
+  {
+    "id": 19,
+    "tourId": 207,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Kenya hoang dã, được ngắm động vật trong tự nhiên là trải nghiệm nhớ đời.",
+    "date": "Đánh giá cách đây 2 tháng"
+  },
+  {
+    "id": 20,
+    "tourId": 105,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 3,
+    "content": "Tour đi hơi mệt do di chuyển liên tục, nhưng hướng dẫn viên rất vui tính.",
+    "date": "Đánh giá cách đây 4 ngày"
+  },
+  {
+    "id": 21,
+    "tourId": 30,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Sapa mờ sương, lên đỉnh Fansipan cảm giác chinh phục thật tuyệt.",
+    "date": "Đánh giá cách đây 6 tuần"
+  },
+  {
+    "id": 22,
+    "tourId": 132,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 4,
+    "content": "Singapore - Malaysia đi dịp này thời tiết đẹp. Gardens by the Bay rất ấn tượng.",
+    "date": "Đánh giá cách đây 2 tuần"
+  },
+  {
+    "id": 23,
+    "tourId": 64,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 5,
+    "content": "Resort Phan Thiết 4 sao tiện nghi, hồ bơi sạch. Kỳ nghỉ dưỡng tuyệt vời cho gia đình.",
+    "date": "Đánh giá cách đây 1 tuần"
+  },
+  {
+    "id": 24,
+    "tourId": 11,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Thác Bản Giốc hùng vĩ quá. Cao Bằng non nước hữu tình.",
+    "date": "Đánh giá cách đây 3 tuần"
+  },
+  {
+    "id": 25,
+    "tourId": 216,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 5,
+    "content": "Ai Cập huyền bí, Kim Tự Tháp vĩ đại hơn trong ảnh nhiều. Tour tổ chức tốt.",
+    "date": "Đánh giá cách đây 1 tháng"
+  },
+  {
+    "id": 26,
+    "tourId": 166,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 4,
+    "content": "Vạn Lý Trường Thành leo hơi mệt nhưng đáng công sức. Bắc Kinh đồ ăn hơi dầu mỡ.",
+    "date": "Đánh giá cách đây 2 tuần"
+  },
+  {
+    "id": 27,
+    "tourId": 46,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 5,
+    "content": "Đà Nẵng - Hội An luôn là điểm đến yêu thích của mình. Phố cổ về đêm lung linh.",
+    "date": "Đánh giá cách đây 5 ngày"
+  },
+  {
+    "id": 28,
+    "tourId": 100,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 5,
+    "content": "Về Cà Mau ăn cua, nghe đờn ca tài tử. Chuyến đi đậm chất miền Tây.",
+    "date": "Đánh giá cách đây 3 tuần"
+  },
+  {
+    "id": 29,
+    "tourId": 141,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Osaka - Kyoto cổ kính và hiện đại đan xen. Bò Kobe ngon tuyệt!",
+    "date": "Đánh giá cách đây 4 ngày"
+  },
+  {
+    "id": 30,
+    "tourId": 58,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 4,
+    "content": "Đi tàu hỏa ra Nha Trang là trải nghiệm mới lạ. Vinpearl Harbour chơi cả ngày không chán.",
+    "date": "Đánh giá cách đây 1 tuần"
+  },
+  {
+    "id": 31,
+    "tourId": 186,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Vương quốc Anh cổ kính, London sầm uất. Mình rất thích kiến trúc ở đây.",
+    "date": "Đánh giá cách đây 2 tháng"
+  },
+  {
+    "id": 32,
+    "tourId": 25,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 5,
+    "content": "Hà Giang mùa nào cũng đẹp. Mã Pí Lèng hùng vĩ thật sự.",
+    "date": "Đánh giá cách đây 10 ngày"
+  },
+  {
+    "id": 33,
+    "tourId": 139,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 4,
+    "content": "Làng cổ Shirakawago như trong truyện cổ tích. Món thịt bò Hida rất mềm.",
+    "date": "Đánh giá cách đây 3 tuần"
+  },
+  {
+    "id": 34,
+    "tourId": 72,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 3,
+    "content": "Tour Vũng Tàu trong ngày hơi gấp gáp nhưng check-in được nhiều điểm đẹp.",
+    "date": "Đánh giá cách đây 2 ngày"
+  },
+  {
+    "id": 35,
+    "tourId": 210,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 5,
+    "content": "Morocco huyền bí, ngủ đêm trên sa mạc Sahara là trải nghiệm không thể quên.",
+    "date": "Đánh giá cách đây 1 tháng"
+  },
+  {
+    "id": 36,
+    "tourId": 36,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Sapa - Bản Cát Cát vẫn giữ được nét hoang sơ. Đồ nướng Sapa rất ngon.",
+    "date": "Đánh giá cách đây 2 tuần"
+  },
+  {
+    "id": 37,
+    "tourId": 174,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 5,
+    "content": "Châu Âu đẹp như mơ. Cối xay gió Hà Lan rất ấn tượng.",
+    "date": "Đánh giá cách đây 6 tuần"
+  },
+  {
+    "id": 38,
+    "tourId": 9,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 4,
+    "content": "Tour khởi hành từ Cần Thơ rất tiện. Hạ Long đẹp tuyệt vời.",
+    "date": "Đánh giá cách đây 1 tuần"
+  },
+  {
+    "id": 39,
+    "tourId": 158,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Hàn Quốc đi hoài không chán. Lotte World chơi cả ngày vẫn muốn chơi tiếp.",
+    "date": "Đánh giá cách đây 3 tuần"
+  },
+  {
+    "id": 40,
+    "tourId": 67,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 4,
+    "content": "Mũi Né nắng gió, đồi cát bay chụp hình siêu ảo. Resort 4 sao tiện nghi.",
+    "date": "Đánh giá cách đây 5 ngày"
+  },
+  {
+    "id": 41,
+    "tourId": 13,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Tặng vé xe lửa Mường Hoa là điểm cộng lớn. Sapa mùa này se lạnh thích lắm.",
+    "date": "Đánh giá cách đây 2 tuần"
+  },
+  {
+    "id": 42,
+    "tourId": 201,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 5,
+    "content": "Tour Trung Mỹ độc lạ, Mexico và Cuba mang vẻ đẹp hoài cổ rất riêng.",
+    "date": "Đánh giá cách đây 2 tháng"
+  },
+  {
+    "id": 43,
+    "tourId": 118,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 4,
+    "content": "Làng hoa Sa Đéc rực rỡ sắc màu. Đi xe điện tham quan rất tiện.",
+    "date": "Đánh giá cách đây 3 ngày"
+  },
+  {
+    "id": 44,
+    "tourId": 125,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Phuket biển xanh cát trắng, đảo Phi Phi đẹp như thiên đường.",
+    "date": "Đánh giá cách đây 1 tháng"
+  },
+  {
+    "id": 45,
+    "tourId": 40,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 5,
+    "content": "Đà Nẵng - Hội An đi bao lần vẫn thích. Cầu Vàng Bà Nà Hills quá ấn tượng.",
+    "date": "Đánh giá cách đây 1 tuần"
+  },
+  {
+    "id": 46,
+    "tourId": 146,
+    "userId": 2,
+    "username": "anna_smith",
+    "avatar": "https://i.pravatar.cc/150?img=22",
+    "rating": 5,
+    "content": "Tokyo Disneyland là giấc mơ thành hiện thực. Trải nghiệm trà đạo rất thanh tịnh.",
+    "date": "Đánh giá cách đây 3 tuần"
+  },
+  {
+    "id": 47,
+    "tourId": 70,
+    "userId": 5,
+    "username": "tom_nguyen",
+    "avatar": "https://i.pravatar.cc/150?img=55",
+    "rating": 4,
+    "content": "Cầu ngắm biển Hồ Tràm check-in đẹp. Resort 4 sao dịch vụ tốt.",
+    "date": "Đánh giá cách đây 4 ngày"
+  },
+  {
+    "id": 48,
+    "tourId": 29,
+    "userId": 1,
+    "username": "john_doe",
+    "avatar": "https://i.pravatar.cc/150?img=11",
+    "rating": 5,
+    "content": "Núi Mắt Thần ở Cao Bằng độc đáo thật. Cảnh sắc thiên nhiên hùng vĩ.",
+    "date": "Đánh giá cách đây 2 tuần"
+  },
+  {
+    "id": 49,
+    "tourId": 76,
+    "userId": 3,
+    "username": "michael_lee",
+    "avatar": "https://i.pravatar.cc/150?img=33",
+    "rating": 5,
+    "content": "Singapore sạch đẹp, Malaysia đồ ăn ngon. Chuyến đi rất vui.",
+    "date": "Đánh giá cách đây 1 tháng"
+  },
+  {
+    "id": 50,
+    "tourId": 12,
+    "userId": 4,
+    "username": "sara_kim",
+    "avatar": "https://i.pravatar.cc/150?img=44",
+    "rating": 5,
+    "content": "Tuyệt Tịnh Cốc ở Ninh Bình cảnh đẹp như phim kiếm hiệp. Rất đáng để đi.",
+    "date": "Đánh giá cách đây 10 ngày"
+  }
+]
