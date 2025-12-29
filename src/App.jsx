@@ -21,6 +21,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/filter" element={<FilterTourPage />} />
+            <Route path="/tour/:tourId" element={<TourDetail />} />
             <Route path="/love" element={<LoveTour />} />
             <Route path="/payment" element={<PaymentPage/>}></Route>
             <Route path="/booking/:id" element={<TourBookingPage/>}></Route>
@@ -28,10 +29,10 @@ function App() {
           </Routes>
         </div>
 
-                <Footer/>
-            </div>
-        </BrowserRouter>
-    );
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
