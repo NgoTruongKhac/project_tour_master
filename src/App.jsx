@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import FilterTourPage from "./pages/FilterTourPage";
 import LoveTour from "./pages/LoveTour.jsx";
 import Header from "./components/Header.jsx";
-
+import ProfilePage from "./pages/ProfilePage";
 function App() {
   return (
     <BrowserRouter>
@@ -19,13 +19,14 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/filter" element={<FilterTourPage />} />
             <Route path="/love" element={<LoveTour />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </div>
 
-                <Footer/>
-            </div>
-        </BrowserRouter>
-    );
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

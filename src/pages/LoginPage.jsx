@@ -42,6 +42,7 @@ const LoginPage = () => {
         name: user.username,
         email: user.email,
         avatar: user.avatar,
+        phone: user.phone,
       };
 
       localStorage.setItem("user", JSON.stringify(userToSave));
