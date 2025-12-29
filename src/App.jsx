@@ -21,6 +21,7 @@ function App() {
             <Route path="/filter" element={<FilterTourPage />} />
             <Route path="/tour/:tourId" element={<TourDetail />} />
             <Route path="/love" element={<LoveTour />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </div>
 
