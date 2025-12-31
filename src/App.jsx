@@ -9,6 +9,7 @@ import Header from "./components/Header.jsx";
 import TourBookingPage from "./pages/TourBookingPage.jsx";
 import PaymentPage from "./pages/PaymentPage.jsx";
 import BookingHistoryPage from "./pages/BookingHistoryPage.jsx";
+import TourDetail from "./pages/TourDetail.jsx";
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
             <Route path="/filter" element={<FilterTourPage />} />
             <Route path="/tour/:tourId" element={<TourDetail />} />
             <Route path="/love" element={<LoveTour />} />
-            <Route path="/payment" element={<PaymentPage/>}></Route>
-            <Route path="/booking/:id" element={<TourBookingPage/>}></Route>
-            <Route path="/my-booking" element={<BookingHistoryPage/>}></Route>
+            <Route path="/payment" element={<PaymentPage />}></Route>
+            <Route path="/booking/:id" element={<TourBookingPage />}></Route>
+            <Route path="/my-booking" element={<BookingHistoryPage />}></Route>
           </Routes>
         </div>
 
