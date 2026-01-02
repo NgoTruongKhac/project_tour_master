@@ -392,7 +392,7 @@ export default function TourDetail() {
                         </div>
                     </div>
                     <div className="mt-16 mb-10">
-                        <CommentAndReview currentTourId={tourId} />
+                        <CommentAndReview currentTourId={tourId}/>
                     </div>
                 </div>
 

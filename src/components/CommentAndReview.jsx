@@ -10,6 +10,7 @@ const CommentAndReview = ({ currentTourId = 1 }) => {
     const [reviews, setReviews] = useState([]);
 
 
+
     const [isWritingReview, setIsWritingReview] = useState(false);
     const [newRating, setNewRating] = useState(5);
     const [newComment, setNewComment] = useState("");
