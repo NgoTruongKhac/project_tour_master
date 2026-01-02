@@ -13,6 +13,7 @@ import TourDetail from "./pages/TourDetail.jsx";
 import InboxPage from "./pages/InboxPage";
 import HelpPage from "./pages/HelpPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import ContactPage from "./pages/ContactPage";
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ function App() {
             <Route path="/inbox" element={<InboxPage />} />
             <Route path="/help" element={<HelpPage />} />
             <Route path="/profile" element={<ProfilePage />}></Route>
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </div>
 
