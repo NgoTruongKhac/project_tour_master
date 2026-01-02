@@ -11,6 +11,8 @@ import PaymentPage from "./pages/PaymentPage.jsx";
 import BookingHistoryPage from "./pages/BookingHistoryPage.jsx";
 import TourDetail from "./pages/TourDetail.jsx";
 import InboxPage from "./pages/InboxPage";
+import HelpPage from "./pages/HelpPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +30,8 @@ function App() {
             <Route path="/booking/:id" element={<TourBookingPage />}></Route>
             <Route path="/my-booking" element={<BookingHistoryPage />}></Route>
             <Route path="/inbox" element={<InboxPage />} />
+            <Route path="/help" element={<HelpPage />} />
+            <Route path="/profile" element={<ProfilePage />}></Route>
           </Routes>
         </div>
 
