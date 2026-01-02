@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import dataTours from "../data/data_tours.json";
 import {useState, useRef, useEffect} from "react";
 import CommentAndReview from "../components/CommentAndReview.jsx";
@@ -18,6 +18,7 @@ import {
 export default function TourDetail() {
     const {tourId} = useParams();
     const scrollContainerRefs = useRef({});
+    const navigate = useNavigate();
 
 
     const tour = dataTours.find((t) => t.tourId === Number(tourId));
@@ -64,7 +65,10 @@ export default function TourDetail() {
         }
         localStorage.setItem('loveTour', JSON.stringify(newLoveTours));
     };
+    const handleBooking = () => {
 
+        navigate(`/booking/${tourId}`);
+    };
 
     const [expandedDay, setExpandedDay] = useState(0);
 
@@ -439,6 +443,8 @@ export default function TourDetail() {
                                 />
                             </button>
                             <button
+                                onClick={handleBooking}
+
                                 className="flex-1 py-2 font-medium text-white rounded-lg bg-primary hover:bg-primary-hover">
                                 Đặt ngay
                             </button>
