@@ -36,6 +36,7 @@ const CommentAndReview = ({ currentTourId = 1 }) => {
     }, [currentTourId]);
 
 
+
     const totalPages = Math.ceil(reviews.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
 
@@ -116,12 +117,14 @@ const CommentAndReview = ({ currentTourId = 1 }) => {
             alert("Vui lòng nhập nội dung đánh giá!");
             return;
         }
+        const user = localStorage.getItem("user");
+        const username = user ? user.username : null;
 
         const newReviewObj = {
             id: Date.now(),
             tourId: currentTourId,
-            username: "Bạn (Mới)",
-            date: "Vừa xong",
+            username: username,
+            date: Date.now(),
             rating: newRating,
             content: newComment,
             avatar: null
@@ -129,6 +132,7 @@ const CommentAndReview = ({ currentTourId = 1 }) => {
 
 
         setReviews([newReviewObj, ...reviews]);
+
 
 
         setIsWritingReview(false);
