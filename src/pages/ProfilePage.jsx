@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { User, Mail, Phone, MapPin, Calendar, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
+import avt from "../assets/profile_avt.png";
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -29,10 +29,7 @@ const ProfilePage = () => {
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center text-center">
               <div className="relative group">
                 <img
-                  src={
-                    user.avatar ||
-                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                  }
+                  src={user.avatar || avt}
                   alt="Avatar"
                   className="w-32 h-32 rounded-full object-cover border-4 border-gray-100 shadow-sm"
                 />
@@ -43,9 +40,9 @@ const ProfilePage = () => {
               </div>
 
               <h2 className="mt-4 text-xl font-bold text-gray-800">
-                {user.name}
+                {user.username}
               </h2>
-              <p className="text-gray-500 text-sm">Thành viên TravelNest</p>
+              <p className="text-gray-500 text-sm">Thành viên Tour Master</p>
 
               <div className="mt-6 w-full space-y-3">
                 <div className="flex items-center justify-between p-3 bg-teal-50 rounded-lg">
@@ -83,7 +80,7 @@ const ProfilePage = () => {
                     </label>
                     <input
                       type="text"
-                      value={user.name}
+                      value={user.username}
                       readOnly
                       className="w-full bg-gray-100 text-gray-500 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none cursor-not-allowed font-medium"
                     />
