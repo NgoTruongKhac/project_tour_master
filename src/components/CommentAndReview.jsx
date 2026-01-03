@@ -1,41 +1,95 @@
-import React, { useState } from 'react';
-// Import dữ liệu từ file JSON (Đảm bảo file nằm đúng đường dẫn ./data/comment_review.json)
+import React, { useState, useEffect, useMemo } from 'react';
 import jsonData from "../data/comment_review.json";
 import {
-    Star, CheckCircle, AlertCircle, ChevronDown, ChevronUp, User, PenTool, Send, X
+    Star, ChevronDown, ChevronUp, User, PenTool, Send, X, MessageSquare, HelpCircle
 } from 'lucide-react';
+import CommentContent from "./CommentContent.jsx";
+const CommentAndReview = ({ currentTourId = 1 }) => {
 
-const MPlusMuseumPage = () => {
+    const [reviews, setReviews] = useState([]);
 
-
-    const initialReviews = jsonData.reviews || [];
-    const summaryData = jsonData.summary || { average_score: 0, total_reviews: 0 };
-
-
-
-    const [reviews, setReviews] = useState(initialReviews);
-
-
-    const [openFaqIndex, setOpenFaqIndex] = useState(null);
     const [isWritingReview, setIsWritingReview] = useState(false);
     const [newRating, setNewRating] = useState(5);
     const [newComment, setNewComment] = useState("");
+    const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
+    // State phân trang
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+    // 1. Load dữ liệu khi currentTourId thay đổi
+    useEffect(() => {
+        const allReviewsList = jsonData || [];
+
+        const tourReviews = allReviewsList.filter(item => item.tourId == currentTourId);
+
+
+        setCurrentPage(1);
+
+        if (tourReviews.length > 0) {
+
+            setReviews(tourReviews.reverse());
+        } else {
+
+            setReviews([]);
+        }
+    }, [currentTourId]);
+
+
+
+    const totalPages = Math.ceil(reviews.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+
+    // Cắt danh sách để lấy ra các item cho trang hiện tại
+    const currentReviews = reviews.slice(
+        startIndex,
+        startIndex + itemsPerPage
+    );
+
+    // Hàm chuyển trang
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage((prev) => prev - 1);
+        }
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage((prev) => prev + 1);
+        }
+    };
+
+    // Tính toán summary (Điểm trung bình)
+    const summaryData = useMemo(() => {
+        if (reviews.length === 0) return { average_score: 0, total_reviews: 0 };
+
+        const total = reviews.length;
+        const sum = reviews.reduce((acc, curr) => acc + curr.rating, 0);
+
+        const average = (sum / total * 2).toFixed(1);
+
+        return { average_score: average, total_reviews: total };
+    }, [reviews]);
+
+    // --- FAQ Data ---
     const faqs = [
         {
             question: "Tôi có cần in vé ra giấy không?",
             answer: "Không cần. Bạn chỉ cần xuất trình mã QR trên vé điện tử từ điện thoại tại cổng soát vé."
         },
         {
-            question: "Bảo tàng có hỗ trợ xe lăn không?",
-            answer: "Có. M+ Museum cam kết hỗ trợ người khuyết tật. Xe lăn có sẵn để mượn tại quầy thông tin (số lượng có hạn)."
+            question: "Tour có bao gồm ăn trưa không?",
+            answer: "Tùy thuộc vào gói vé bạn chọn. Vui lòng kiểm tra kỹ thông tin trong phần 'Bao gồm' phía trên."
         },
         {
-            question: "Thời gian mở cửa của bảo tàng là khi nào?",
-            answer: "Thứ Ba - Thứ Năm: 10:00 - 18:00. Thứ Sáu: 10:00 - 22:00. Cuối tuần: 10:00 - 18:00. Đóng cửa vào thứ Hai."
+            question: "Chính sách hoàn hủy như thế nào?",
+            answer: "Bạn được hoàn tiền 100% nếu hủy trước 24h so với giờ khởi hành."
         }
     ];
-
 
     const toggleFaq = (index) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -49,210 +103,257 @@ const MPlusMuseumPage = () => {
 
     const renderInteractiveStars = () => {
         return [...Array(5)].map((_, i) => (
-            <button key={i} onClick={() => setNewRating(i + 1)} className="focus:outline-none">
+            <button key={i} onClick={() => setNewRating(i + 1)} className="focus:outline-none transform hover:scale-110 transition-transform">
                 <Star
-                    size={24}
+                    size={28}
                     className={`${i < newRating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"} transition-colors`}
                 />
             </button>
         ));
     };
 
-    // Xử lý gửi đánh giá mới
     const handleSubmitReview = () => {
         if (newComment.trim() === "") {
             alert("Vui lòng nhập nội dung đánh giá!");
             return;
         }
+        const user = localStorage.getItem("user");
+        const username = user ? user.username : null;
 
         const newReviewObj = {
             id: Date.now(),
-            user: "Tôi (Mới)",
-            date: "Vừa xong", 
+            tourId: currentTourId,
+            username: username,
+            date: Date.now(),
             rating: newRating,
-            content: newComment
+            content: newComment,
+            avatar: null
         };
 
 
         setReviews([newReviewObj, ...reviews]);
 
-        // Reset form
+
+
         setIsWritingReview(false);
         setNewComment("");
         setNewRating(5);
+
+        setCurrentPage(1);
     };
 
     return (
-        <div className="bg-gray-50 min-h-screen font-sans pb-24">
-            <div className="max-w-7xl mx-auto p-4">
+        <div className="w-full font-sans">
+            {/* 1. PHẦN ĐÁNH GIÁ & REVIEW */}
 
-                {/* GRID LAYOUT */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                    {/* --- CỘT TRÁI --- */}
-                    <div className="md:col-span-2">
+            <div className="mb-8">
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-8 h-8 text-white rounded-full shadow-lg bg-blue-600 shadow-blue-600/30">
+                        <MessageSquare size={18} />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800">Đánh giá từ khách hàng</h2>
+                </div>
 
-                        {/* KHU VỰC ĐÁNH GIÁ */}
-                        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                            <div className="flex justify-between items-center mb-4">
-                                <h3 className="font-bold text-lg">Đánh giá từ khách hàng</h3>
-
-                                {/* Nút viết đánh giá */}
-                                {!isWritingReview && (
-                                    <button
-                                        onClick={() => setIsWritingReview(true)}
-                                        className="text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors flex items-center"
-                                    >
-                                        <PenTool size={14} className="mr-2"/> Viết đánh giá
-                                    </button>
-                                )}
+                <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-sm mb-6">
+                    {/* 1. Summary Header: Điểm trung bình & Nút viết đánh giá */}
+                    <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                        <div className="flex items-center bg-gray-50 px-6 py-3 rounded-lg border border-gray-100 w-full md:w-auto">
+                            <div className="text-center pr-6 border-r border-gray-300">
+                                <div className="text-3xl font-bold text-gray-800 leading-none">
+                                    {summaryData.average_score}
+                                </div>
+                                <div className="text-xs text-gray-500 mt-1">/ 10 điểm</div>
                             </div>
-
-                            {/* Summary Box (Dữ liệu động từ JSON) */}
-                            <div className="flex items-center bg-gray-50 p-4 rounded-lg mb-6">
-                                <div className="text-center pr-6 border-r border-gray-200">
-                                    {/* Hiển thị điểm trung bình từ file JSON */}
-                                    <div className="text-3xl font-bold text-gray-800">
-                                        {summaryData.average_score || 0}
-                                        <span className="text-lg text-gray-500">/10</span>
-                                    </div>
-                                    <div className="flex mt-1 justify-center">{renderStars(Math.round(summaryData.average_score / 2) || 5)}</div>
+                            <div className="pl-6">
+                                <div className="flex mb-1">
+                                    {renderStars(Math.round(summaryData.average_score / 2))}
                                 </div>
-                                <div className="pl-6">
-                                    <p className="text-sm text-gray-600 font-medium">Khách hàng hài lòng về trải nghiệm này</p>
-                                    {/* Hiển thị tổng số review từ file JSON */}
-                                    <p className="text-xs text-gray-500 mt-1">
-                                        Dựa trên {summaryData.total_reviews || reviews.length} lượt đánh giá
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Form viết đánh giá */}
-                            {isWritingReview && (
-                                <div className="mb-8 p-4 border border-blue-100 bg-blue-50/30 rounded-xl animate-fade-in">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <h4 className="font-bold text-gray-800 text-sm">Trải nghiệm của bạn thế nào?</h4>
-                                        <button onClick={() => setIsWritingReview(false)}><X size={18} className="text-gray-400 hover:text-red-500"/></button>
-                                    </div>
-
-                                    <div className="flex space-x-1 mb-3">
-                                        {renderInteractiveStars()}
-                                    </div>
-
-                                    <textarea
-                                        value={newComment}
-                                        onChange={(e) => setNewComment(e.target.value)}
-                                        placeholder="Hãy chia sẻ cảm nhận chân thực của bạn về dịch vụ..."
-                                        className="w-full p-3 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none min-h-[100px] bg-white"
-                                    ></textarea>
-
-                                    <div className="flex justify-end mt-3">
-                                        <button
-                                            onClick={() => setIsWritingReview(false)}
-                                            className="text-gray-500 text-sm font-medium px-4 py-2 mr-2 hover:bg-gray-100 rounded-lg"
-                                        >
-                                            Hủy
-                                        </button>
-                                        <button
-                                            onClick={handleSubmitReview}
-                                            className="bg-blue-600 text-white text-sm font-bold px-6 py-2 rounded-lg hover:bg-blue-700 flex items-center shadow-sm"
-                                        >
-                                            <Send size={14} className="mr-2"/> Gửi đánh giá
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Danh sách Reviews (Map từ dữ liệu JSON) */}
-                            <div className="space-y-6">
-                                {reviews.map((review) => (
-                                    <div key={review.id} className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                                        <div className="flex items-center justify-between mb-2">
-                                            <div className="flex items-center">
-                                                <div className="bg-gray-200 p-2 rounded-full mr-3">
-                                                    <User size={16} className="text-gray-500" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-bold text-gray-800">{review.username}</p>
-                                                    <div className="flex">{renderStars(review.rating)}</div>
-                                                </div>
-                                            </div>
-                                            <span className="text-xs text-gray-400">{review.date}</span>
-                                        </div>
-                                        <p className="text-sm text-gray-600 mt-2">{review.content}</p>
-                                    </div>
-                                ))}
+                                <p className="text-sm text-gray-500">
+                                    Dựa trên <strong>{summaryData.total_reviews}</strong> đánh giá
+                                </p>
                             </div>
                         </div>
 
-                        {/* FAQ SECTION */}
-                        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 mt-6">
-                            <h3 className="font-bold text-lg mb-4">Câu hỏi thường gặp</h3>
-                            <div className="space-y-3">
-                                {faqs.map((faq, index) => (
-                                    <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
-                                        <button
-                                            onClick={() => toggleFaq(index)}
-                                            className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
-                                        >
-                                            <span className="font-medium text-gray-800 text-sm">{faq.question}</span>
-                                            {openFaqIndex === index ? <ChevronUp size={16} className="text-gray-500" /> :
-                                                <ChevronDown size={16} className="text-gray-500" />}
-                                        </button>
-                                        {openFaqIndex === index && (
-                                            <div className="p-4 bg-white border-t border-gray-200 text-sm text-gray-600 leading-relaxed">
-                                                {faq.answer}
+                        {!isWritingReview && (
+                            <button
+                                onClick={() => setIsWritingReview(true)}
+                                className="w-full md:w-auto px-5 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 shadow-sm"
+                            >
+                                <PenTool size={16} /> Viết đánh giá
+                            </button>
+                        )}
+                    </div>
+
+                    {/* 2. Form viết đánh giá (Hiện khi bấm nút) */}
+                    {isWritingReview && (
+                        <div className="mb-8 p-5 border border-blue-100 bg-blue-50/50 rounded-xl animate-fade-in">
+                            <div className="flex justify-between items-center mb-4">
+                                <h4 className="font-bold text-gray-800">Chia sẻ trải nghiệm của bạn</h4>
+                                <button onClick={() => setIsWritingReview(false)} className="text-gray-400 hover:text-red-500 transition-colors">
+                                    <X size={20} />
+                                </button>
+                            </div>
+
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className="text-sm font-medium text-gray-700">Đánh giá:</span>
+                                <div className="flex space-x-1 cursor-pointer">
+                                    {renderInteractiveStars()}
+                                </div>
+                            </div>
+
+                            <textarea
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                placeholder="Dịch vụ thế nào? Hướng dẫn viên có nhiệt tình không?..."
+                                className="w-full p-4 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none min-h-[120px] bg-white shadow-inner text-gray-800"
+                            ></textarea>
+
+                            <div className="flex justify-end mt-4 gap-3">
+                                <button
+                                    onClick={() => setIsWritingReview(false)}
+                                    className="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                                >
+                                    Hủy
+                                </button>
+                                <button
+                                    onClick={handleSubmitReview}
+                                    className="px-6 py-2 text-sm font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2 shadow-md"
+                                >
+                                    <Send size={16} /> Gửi đánh giá
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <div className="space-y-6">
+                {currentReviews.length > 0 ? (
+                    currentReviews.map((review) => (
+                        <div key={review.id} className="pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                            <div className="flex justify-between items-start mb-2">
+                                <div className="flex items-center gap-3">
+                                    <div className="flex-shrink-0">
+                                        {review.avatar ? (
+                                            <img src={review.avatar} alt={review.username} className="w-10 h-10 rounded-full object-cover" />
+                                        ) : (
+                                            <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full text-gray-500">
+                                                <User size={20} />
                                             </div>
                                         )}
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* --- CỘT PHẢI (SIDEBAR) --- */}
-                    <div className="hidden md:block col-span-1">
-                        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 sticky top-24">
-                            <h3 className="font-bold text-gray-800 mb-4">Tại sao nên đặt với Traveloka?</h3>
-                            <ul className="space-y-3">
-                                <li className="flex items-start">
-                                    <CheckCircle className="text-blue-500 mr-2 shrink-0" size={18} />
-                                    <span className="text-sm text-gray-600">Giá tốt nhất, không phí ẩn</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <CheckCircle className="text-blue-500 mr-2 shrink-0" size={18} />
-                                    <span className="text-sm text-gray-600">Xác nhận vé tức thì qua email</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <CheckCircle className="text-blue-500 mr-2 shrink-0" size={18} />
-                                    <span className="text-sm text-gray-600">Hỗ trợ khách hàng 24/7</span>
-                                </li>
-                            </ul>
-
-                            <div className="mt-6 pt-4 border-t border-gray-100">
-                                <div className="flex items-start bg-blue-50 p-3 rounded-lg">
-                                    <AlertCircle size={18} className="text-blue-600 mr-2 shrink-0 mt-0.5" />
-                                    <p className="text-xs text-blue-800">
-                                        Vui lòng đến đúng giờ đã chọn. Vé đã mua không thể hoàn/hủy.
-                                    </p>
+                                    <div>
+                                        <p className="text-base font-bold text-gray-800">{review.username}</p>
+                                        <div className="flex items-center gap-2">
+                                            <div className="flex">{renderStars(review.rating)}</div>
+                                            <span className="text-xs text-gray-400">• {review.date}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+
+                            <div className="pl-13 mt-2">
+                                <CommentContent content={review.content} limit={200} />
+                            </div>
                         </div>
+                    ))
+                ) : (
+                    <p className="text-center text-gray-500 py-4">Chưa có đánh giá nào cho Tour này.</p>
+                )}
+            </div>
+
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+                <div className="p-4 border-t border-gray-100 bg-gray-50 flex items-center justify-center gap-2 mt-4 rounded-xl shadow-sm bg-white">
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                        className={`px-3 py-1 rounded-md text-sm font-medium transition-colors
+              ${currentPage === 1
+                            ? "text-gray-300 cursor-not-allowed"
+                            : "text-gray-600 hover:bg-blue-50 hover:text-blue-600 border border-gray-200 bg-white"}`}
+                    >
+                        Trước
+                    </button>
+
+                    <div className="flex gap-1">
+                        {[...Array(totalPages)].map((_, index) => {
+                            const pageNum = index + 1;
+                            // Chỉ hiển thị các trang xung quanh trang hiện tại nếu quá nhiều trang (Optional optimization)
+                            return (
+                                <button
+                                    key={pageNum}
+                                    onClick={() => handlePageChange(pageNum)}
+                                    className={`w-8 h-8 flex items-center justify-center rounded-md text-sm transition-all
+                    ${currentPage === pageNum
+                                        ? "bg-blue-600 text-white shadow-md font-bold"
+                                        : "bg-white text-gray-600 border border-gray-200 hover:bg-blue-50 hover:text-blue-600"}`}
+                                >
+                                    {pageNum}
+                                </button>
+                            );
+                        })}
                     </div>
 
+                    <button
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                        className={`px-3 py-1 rounded-md text-sm font-medium transition-colors
+              ${currentPage === totalPages
+                            ? "text-gray-300 cursor-not-allowed"
+                            : "text-gray-600 hover:bg-blue-50 hover:text-blue-600 border border-gray-200 bg-white"}`}
+                    >
+                        Sau
+                    </button>
+                </div>
+            )}
+            {/* 2. PHẦN FAQ */}
+            <div>
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-8 h-8 text-white rounded-full shadow-lg bg-orange-500 shadow-orange-500/30">
+                        <HelpCircle size={18} />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800">Câu hỏi thường gặp</h2>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                    {faqs.map((faq, index) => {
+                        const isOpen = openFaqIndex === index;
+                        return (
+                            <div key={index} className={`border rounded-xl overflow-hidden transition-all duration-200 ${isOpen ? 'border-orange-500 shadow-sm bg-white' : 'border-gray-200 bg-white hover:border-orange-300'}`}>
+                                <button
+                                    onClick={() => toggleFaq(index)}
+                                    className="w-full flex justify-between items-center p-4 text-left group"
+                                >
+                                    <span className={`font-medium text-base transition-colors ${isOpen ? 'text-orange-600' : 'text-gray-800'}`}>
+                                        {faq.question}
+                                    </span>
+                                    {isOpen ?
+                                        <ChevronUp size={18} className="text-orange-500" /> :
+                                        <ChevronDown size={18} className="text-gray-400 group-hover:text-orange-400" />
+                                    }
+                                </button>
+
+                                <div
+                                    className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                                        isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+                                    }`}
+                                >
+                                    <div className="p-4 pt-0 text-base text-gray-800 leading-relaxed border-t border-gray-100 border-dashed bg-orange-50/10">
+                                        <p className="mt-2">{faq.answer}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
 
-            {/* Mobile Footer */}
-            <div className="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-200 p-4 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-40">
-                <div>
-                    <p className="text-xs text-gray-500">Giá bắt đầu từ</p>
-                    <p className="text-lg font-bold text-orange-600">315.000 VND</p>
-                </div>
-                <button className="bg-blue-600 text-white font-bold py-2.5 px-6 rounded-lg">Xem lựa chọn</button>
-            </div>
         </div>
     );
 };
 
-export default MPlusMuseumPage;
+export default CommentAndReview;

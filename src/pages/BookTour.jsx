@@ -1,9 +1,9 @@
-import React, {useState, useMemo} from 'react'; // Thêm useMemo
+import React, {useState, useMemo} from 'react';
 import {ChevronLeft, ChevronRight, Calendar, Info, AlertCircle, Coins} from 'lucide-react';
 
 const BookingTicket = () => {
 
-    // --- KHU VỰC XỬ LÝ LOGIC NGÀY THÁNG ĐỘNG ---
+
 
     // Hàm tạo danh sách 7 ngày tiếp theo
     const generateNext7Days = () => {
@@ -14,18 +14,17 @@ const BookingTicket = () => {
             const nextDate = new Date(today);
             nextDate.setDate(today.getDate() + i);
 
-            // Xử lý thứ (Thứ 2 -> CN)
+
             const dayOfWeek = nextDate.getDay();
             let dayName = `Thứ ${dayOfWeek + 1}`;
             if (dayOfWeek === 0) dayName = 'CN';
             if (dayOfWeek === 1) dayName = 'Thứ 2'; // Đảm bảo đúng format tiếng Việt
 
-            // Xử lý ngày hiển thị (DD thg MM)
             const day = String(nextDate.getDate()).padStart(2, '0');
             const month = String(nextDate.getMonth() + 1).padStart(2, '0');
             const dateDisplay = `${day} thg ${month}`;
 
-            // Xử lý fullDate (YYYY-MM-DD) để làm key so sánh
+
             const year = nextDate.getFullYear();
             const fullDate = `${year}-${month}-${day}`;
 
@@ -38,12 +37,10 @@ const BookingTicket = () => {
         return days;
     };
 
-    // Sử dụng useMemo để không phải tính toán lại mỗi khi render lại (trừ khi reload)
+
     const dates = useMemo(() => generateNext7Days(), []);
 
-    // -------------------------------------------
 
-    // State cho ngày được chọn (Mặc định chọn ngày đầu tiên trong danh sách - Hôm nay)
     const [selectedDate, setSelectedDate] = useState(dates[0].fullDate);
 
     // State số lượng vé
@@ -59,7 +56,7 @@ const BookingTicket = () => {
     const getSelectedDateDisplay = () => {
         const selectedObj = dates.find(d => d.fullDate === selectedDate);
         if (!selectedObj) return '';
-        // Lấy thêm năm cho hiển thị đầy đủ
+
         const year = selectedDate.split('-')[0];
         return `${selectedObj.day}, ${selectedObj.date} ${year}`;
     };
