@@ -21,15 +21,21 @@ export default function TourDetail() {
   const tour = dataTours.find((t) => t.tourId === Number(tourId));
   const [srcImg, setSrcImg] = useState(tour.media.thumbnail);
 
-  const firstDeparture = tour.departures[0];
-  const [departure, setDeparture] = useState({
-    date: firstDeparture.date,
-    slotsAvailable: firstDeparture.slotsAvailable,
-    priceAdult: firstDeparture.priceAdult,
-    priceChild: firstDeparture.priceChild,
-    priceInfant: firstDeparture.priceInfant,
-    transportation: tour.transportation,
-  });
+  const firstDeparture =
+    tour?.departures && tour.departures.length > 0 ? tour.departures[0] : null;
+
+  const [departure, setDeparture] = useState(
+    firstDeparture
+      ? {
+          date: firstDeparture.date,
+          slotsAvailable: firstDeparture.slotsAvailable,
+          priceAdult: firstDeparture.priceAdult,
+          priceChild: firstDeparture.priceChild,
+          priceInfant: firstDeparture.priceInfant,
+          transportation: tour.transportation,
+        }
+      : null
+  );
 
   if (!tour) {
     return <p className="py-10 text-center text-dark">Tour không tồn tại</p>;
@@ -361,7 +367,9 @@ export default function TourDetail() {
               </li>
               <li>
                 <strong>Ngày khởi hành:</strong>{" "}
-                <span className="text-primary">{departure.date}</span>
+                <span className="text-primary">
+                  {departure ? departure.date : "Chưa có lịch"}
+                </span>
               </li>
               <li>
                 <strong>Thời gian:</strong> {tour.duration}
@@ -369,7 +377,7 @@ export default function TourDetail() {
               <li>
                 <strong>Số chỗ còn:</strong>{" "}
                 <span className="font-semibold">
-                  {departure.slotsAvailable}
+                  {departure ? departure.slotsAvailable : "--"}
                 </span>
               </li>
             </ul>

@@ -23,9 +23,9 @@ function App() {
             <Route path="/filter" element={<FilterTourPage />} />
             <Route path="/tour/:tourId" element={<TourDetail />} />
             <Route path="/love" element={<LoveTour />} />
-            <Route path="/payment" element={<PaymentPage/>}></Route>
-            <Route path="/booking/:id" element={<TourBookingPage/>}></Route>
-            <Route path="/my-booking" element={<BookingHistoryPage/>}></Route>
+            <Route path="/payment" element={<PaymentPage />}></Route>
+            <Route path="/booking/:id" element={<TourBookingPage />}></Route>
+            <Route path="/my-booking" element={<BookingHistoryPage />}></Route>
           </Routes>
         </div>
 
