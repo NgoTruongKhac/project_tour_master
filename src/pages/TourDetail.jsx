@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dataTours from "../data/data_tours.json";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import CommentAndReview from "../components/CommentAndReview.jsx";
 import {
   ChevronLeft,
   ChevronRight,
@@ -8,7 +9,6 @@ import {
   Plane,
   Users,
   DollarSign,
-  Car,
   ChevronDown,
   MapPin,
   CalendarCheck,
@@ -18,18 +18,57 @@ import {
 export default function TourDetail() {
   const { tourId } = useParams();
   const scrollContainerRefs = useRef({});
-  const tour = dataTours.find((t) => t.tourId === Number(tourId));
-  const [srcImg, setSrcImg] = useState(tour.media.thumbnail);
+  const navigate = useNavigate();
 
-  const firstDeparture = tour.departures[0];
-  const [departure, setDeparture] = useState({
-    date: firstDeparture.date,
-    slotsAvailable: firstDeparture.slotsAvailable,
-    priceAdult: firstDeparture.priceAdult,
-    priceChild: firstDeparture.priceChild,
-    priceInfant: firstDeparture.priceInfant,
-    transportation: tour.transportation,
-  });
+  const tour = dataTours.find((t) => t.tourId === Number(tourId));
+
+  const firstDeparture =
+    tour?.departures && tour.departures.length > 0 ? tour.departures[0] : null;
+
+  const [departure, setDeparture] = useState(
+    firstDeparture
+      ? {
+          date: firstDeparture.date,
+          slotsAvailable: firstDeparture.slotsAvailable,
+          priceAdult: firstDeparture.priceAdult,
+          priceChild: firstDeparture.priceChild,
+          priceInfant: firstDeparture.priceInfant,
+          transportation: tour.transportation,
+        }
+      : null
+  );
+
+  const [srcImg, setSrcImg] = useState(tour ? tour.media.thumbnail : "");
+
+  const [isLoved, setIsLoved] = useState(false);
+
+  useEffect(() => {
+    if (!tour) return;
+    const loveTours = JSON.parse(localStorage.getItem("loveTour") || "[]");
+
+    const isExist = loveTours.some((item) => item.tourId === tour.tourId);
+    setIsLoved(isExist);
+  }, [tour]);
+
+  const handleLoveTour = () => {
+    if (!tour) return;
+    const loveTours = JSON.parse(localStorage.getItem("loveTour") || "[]");
+    let newLoveTours;
+
+    if (isLoved) {
+      newLoveTours = loveTours.filter((item) => item.tourId !== tour.tourId);
+      setIsLoved(false);
+    } else {
+      newLoveTours = [...loveTours, tour];
+      setIsLoved(true);
+    }
+    localStorage.setItem("loveTour", JSON.stringify(newLoveTours));
+  };
+  const handleBooking = () => {
+    navigate(`/booking/${tourId}`);
+  };
+
+  const [expandedDay, setExpandedDay] = useState(0);
 
   if (!tour) {
     return <p className="py-10 text-center text-dark">Tour không tồn tại</p>;
@@ -39,8 +78,8 @@ export default function TourDetail() {
     setSrcImg(src);
   };
 
-  const handleScroll = (tourId, direction) => {
-    const container = scrollContainerRefs.current[tourId];
+  const handleScroll = (id, direction) => {
+    const container = scrollContainerRefs.current[id];
     if (container) {
       const scrollAmount = 200;
       container.scrollBy({
@@ -67,8 +106,6 @@ export default function TourDetail() {
     return <Car size={20} />;
   };
 
-  const [expandedDay, setExpandedDay] = useState(0);
-
   const toggleDay = (index) => {
     setExpandedDay(expandedDay === index ? -1 : index);
   };
@@ -84,7 +121,6 @@ export default function TourDetail() {
         <div className="lg:col-span-9">
           {/* Gallery */}
           <div className="mb-4">
-            {/* Ảnh chính */}
             <div className="mb-3">
               <img
                 src={srcImg}
@@ -118,6 +154,8 @@ export default function TourDetail() {
               ))}
             </div>
           </div>
+
+          {/* ... (Phần chọn ngày khởi hành giữ nguyên) ... */}
           <div className="mt-20">
             <div className="flex items-center gap-2 mb-7">
               <div className="flex items-center justify-center w-8 h-8 text-white rounded-full shadow-lg bg-primary shadow-primary/30">
@@ -264,7 +302,9 @@ export default function TourDetail() {
               </div>
             )}
           </div>
+
           <div className="mt-16">
+            {/* ... (Phần Lịch trình chi tiết giữ nguyên) ... */}
             <div className="flex items-center gap-3 mb-7">
               <div className="flex items-center justify-center w-8 h-8 text-white rounded-full shadow-lg bg-primary shadow-primary/30">
                 <MapPin size={20} />
@@ -342,6 +382,9 @@ export default function TourDetail() {
               })}
             </div>
           </div>
+          <div className="mt-16 mb-10">
+            <CommentAndReview currentTourId={tourId} />
+          </div>
         </div>
 
         {/* RIGHT */}
@@ -375,10 +418,21 @@ export default function TourDetail() {
             </ul>
 
             <div className="flex gap-3 mt-6">
-              <button className="flex flex-row items-center px-2 py-2 bg-white border-2 rounded-lg border-primary text-primary">
-                <Heart />
+              <button
+                onClick={handleLoveTour}
+                className={`flex flex-row items-center px-2 py-2 border-2 rounded-lg transition-colors duration-200
+                                    ${
+                                      isLoved
+                                        ? "bg-primary border-primary text-white"
+                                        : "bg-white border-primary text-primary"
+                                    }`}
+              >
+                <Heart className={isLoved ? "fill-current" : ""} size={20} />
               </button>
-              <button className="flex-1 py-2 font-medium text-white rounded-lg bg-primary hover:bg-primary-hover">
+              <button
+                onClick={handleBooking}
+                className="flex-1 py-2 font-medium text-white rounded-lg bg-primary hover:bg-primary-hover"
+              >
                 Đặt ngay
               </button>
             </div>

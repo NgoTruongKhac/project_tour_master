@@ -106,10 +106,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/faq"
+                  to="/help"
                   className="hover:text-primary transition-colors"
                 >
-                  Câu hỏi thường gặp (FAQ)
+                  Câu hỏi thường gặp
                 </Link>
               </li>
               <li>

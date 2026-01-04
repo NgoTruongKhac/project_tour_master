@@ -77,6 +77,7 @@ const TourBookingPage = () => {
 
         adults: 1,
         children: 0,
+        infant:0,
         travelDate: availableDates[0],
         selectedPackage: tourPackages[0].id,
 
@@ -117,9 +118,59 @@ const TourBookingPage = () => {
         return pkg ? pkg.priceMod : 0;
     }
 
-    const basePrice = tour ? parsePrice(tour.basePrice) + getPackagePrice() : 0;
-    const totalPrice = basePrice * bookingInfo.adults + (basePrice * 0.75 * bookingInfo.children);
+    const getPriceDetails = () => {
 
+        let adultPrice = 0;
+        let childPrice = 0;
+        let infantPrice = 0;
+
+        if (tour) {
+
+            if (tour.departures && tour.departures.length > 0) {
+
+                let foundPrice = false;
+                const dateMatch = bookingInfo.travelDate.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+
+                if (dateMatch) {
+                    const dateStr = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`; // Chuyển thành dd-mm-yyyy
+                    const departure = tour.departures.find(d => d.date === dateStr);
+
+                    if (departure) {
+                        adultPrice = parsePrice(departure.priceAdult);
+                        childPrice = parsePrice(departure.priceChild);
+                        infantPrice = parsePrice(departure.priceInfant);
+                        foundPrice = true;
+                    }
+                }
+
+
+                if (!foundPrice && tour.departures[0]) {
+                    adultPrice = parsePrice(tour.departures[0].priceAdult);
+                    childPrice = parsePrice(tour.departures[0].priceChild);
+                    infantPrice = parsePrice(tour.departures[0].priceInfant);
+                }
+            } else {
+
+                adultPrice = parsePrice(tour.basePrice);
+                childPrice = adultPrice * 0.75;
+                infantPrice = adultPrice * 0.1;
+            }
+        }
+
+        return { adultPrice, childPrice , infantPrice};
+    };
+
+
+    const { adultPrice: baseAdultPrice, childPrice: baseChildPrice,infantPrice:baseInfantPrice } = getPriceDetails();
+    const packageModPrice = getPackagePrice();
+
+    const finalAdultPrice = baseAdultPrice + packageModPrice;
+    const finalChildPrice = baseChildPrice + (packageModPrice * 0.75);
+    const finalInfantPrice = baseInfantPrice;
+
+    const totalPrice = (finalAdultPrice * bookingInfo.adults) +
+        (finalChildPrice * bookingInfo.children) +
+        (finalInfantPrice * bookingInfo.infant);
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setBookingInfo({ ...bookingInfo, [name]: value });
@@ -128,7 +179,9 @@ const TourBookingPage = () => {
     const handleQuantityChange = (type, operation) => {
         setBookingInfo((prev) => {
             const newValue = operation === "inc" ? prev[type] + 1 : prev[type] - 1;
-            return { ...prev, [type]: Math.max(type === 'adults' ? 1 : 0, newValue) };
+
+            const minVal = type === 'adults' ? 1 : 0;
+            return { ...prev, [type]: Math.max(minVal, newValue) };
         });
     };
 
@@ -298,28 +351,67 @@ const TourBookingPage = () => {
 
                             <div className="border-t pt-4 space-y-4">
                                 {/* Người lớn */}
-                                <div className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg transition border border-transparent hover:border-gray-200">
+                                <div
+                                    className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg transition border border-transparent hover:border-gray-200">
                                     <div>
                                         <p className="font-semibold text-gray-800">Người lớn</p>
                                         <p className="text-sm text-gray-500">Từ 12 tuổi trở lên</p>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <button type="button" onClick={() => handleQuantityChange("adults", "dec")} className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition disabled:opacity-50" disabled={bookingInfo.adults <= 1}>-</button>
-                                        <span className="w-8 text-center font-semibold text-lg">{bookingInfo.adults}</span>
-                                        <button type="button" onClick={() => handleQuantityChange("adults", "inc")} className="w-9 h-9 rounded-full border border-blue-600 text-blue-600 flex items-center justify-center hover:bg-blue-50 transition">+</button>
+                                        <button type="button" onClick={() => handleQuantityChange("adults", "dec")}
+                                                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition disabled:opacity-50"
+                                                disabled={bookingInfo.adults <= 1}>-
+                                        </button>
+                                        <span
+                                            className="w-8 text-center font-semibold text-lg">{bookingInfo.adults}</span>
+                                        <button type="button" onClick={() => handleQuantityChange("adults", "inc")}
+                                                className="w-9 h-9 rounded-full border border-blue-600 text-blue-600 flex items-center justify-center hover:bg-blue-50 transition">+
+                                        </button>
                                     </div>
                                 </div>
 
                                 {/* Trẻ em */}
-                                <div className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg transition border border-transparent hover:border-gray-200">
+                                <div
+                                    className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg transition border border-transparent hover:border-gray-200">
                                     <div>
                                         <p className="font-semibold text-gray-800">Trẻ em</p>
                                         <p className="text-sm text-gray-500">Từ 2 - 11 tuổi</p>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <button type="button" onClick={() => handleQuantityChange("children", "dec")} className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition disabled:opacity-50" disabled={bookingInfo.children <= 0}>-</button>
-                                        <span className="w-8 text-center font-semibold text-lg">{bookingInfo.children}</span>
-                                        <button type="button" onClick={() => handleQuantityChange("children", "inc")} className="w-9 h-9 rounded-full border border-blue-600 text-blue-600 flex items-center justify-center hover:bg-blue-50 transition">+</button>
+                                        <button type="button" onClick={() => handleQuantityChange("children", "dec")}
+                                                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition disabled:opacity-50"
+                                                disabled={bookingInfo.children <= 0}>-
+                                        </button>
+                                        <span
+                                            className="w-8 text-center font-semibold text-lg">{bookingInfo.children}</span>
+                                        <button type="button" onClick={() => handleQuantityChange("children", "inc")}
+                                                className="w-9 h-9 rounded-full border border-blue-600 text-blue-600 flex items-center justify-center hover:bg-blue-50 transition">+
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div
+                                    className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg transition border border-transparent hover:border-gray-200">
+                                    <div>
+                                        <p className="font-semibold text-gray-800">Em bé</p>
+                                        <p className="text-sm text-gray-500">Dưới 2 tuổi</p>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={() => handleQuantityChange("infant", "dec")}
+                                            className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition disabled:opacity-50"
+                                            disabled={bookingInfo.infant <= 0}
+                                        >-
+                                        </button>
+                                        <span
+                                            className="w-8 text-center font-semibold text-lg">{bookingInfo.infant}</span>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleQuantityChange("infant", "inc")}
+                                            className="w-9 h-9 rounded-full border border-blue-600 text-blue-600 flex items-center justify-center hover:bg-blue-50 transition"
+                                        >+
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -329,8 +421,12 @@ const TourBookingPage = () => {
                         <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                             <h2 className="text-lg font-bold text-gray-800 mb-2">Thông tin hành khách</h2>
                             <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-6 flex gap-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" viewBox="0 0 20 20"
+                                     fill="currentColor">
+                                    <path fillRule="evenodd"
+                                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                          clipRule="evenodd"/>
                                 </svg>
                                 <p className="text-xs text-gray-700 leading-5">
                                     Vui lòng chú ý: Nhập tên đúng như trên CMND/CCCD/Hộ chiếu.
@@ -344,7 +440,8 @@ const TourBookingPage = () => {
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-600 mb-1.5">Danh xưng</label>
+                                        <label className="block text-sm font-medium text-gray-600 mb-1.5">Danh
+                                            xưng</label>
                                         <select name="passengerTitle" value={bookingInfo.passengerTitle} onChange={handleInputChange} className="w-full border border-gray-300 rounded-lg p-2.5 focus:border-blue-500 outline-none bg-white">
                                             <option value="MR">Ông</option>
                                             <option value="MS">Bà</option>
@@ -456,15 +553,25 @@ const TourBookingPage = () => {
                                 <div className="space-y-3">
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">Người lớn (x{bookingInfo.adults})</span>
-                                        <span className="font-medium text-gray-900">{(basePrice * bookingInfo.adults).toLocaleString('vi-VN')} ₫</span>
+                                        <span
+                                            className="font-medium text-gray-900">{(baseAdultPrice * bookingInfo.adults).toLocaleString('vi-VN')} ₫</span>
                                     </div>
                                     {bookingInfo.children > 0 && (
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Trẻ em (x{bookingInfo.children})</span>
-                                            <span className="font-medium text-gray-900">{(basePrice * 0.75 * bookingInfo.children).toLocaleString('vi-VN')} ₫</span>
+                                            <span
+                                                className="font-medium text-gray-900">{(baseChildPrice * 0.75 * bookingInfo.children).toLocaleString('vi-VN')} ₫</span>
                                         </div>
                                     )}
-                                </div>
+                                    {bookingInfo.infant > 0 && (
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-gray-600">Em bé (x{bookingInfo.infant})</span>
+                                            <span
+                                                className="font-medium text-gray-900">{(baseChildPrice *0.1* bookingInfo.infant).toLocaleString('vi-VN')} ₫</span>
+                                        </div>
+                                    )}
+
+                                </div>1
 
                                 <div className="mt-6 pt-4 border-t border-gray-100">
                                     <div className="flex justify-between items-center mb-1">
