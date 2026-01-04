@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import categoryData from "../data/category_tours.json";
 import { useState } from "react";
+import SearchHero from "../components/SearchHero";
 // Destination Card Component
 const DestinationCard = ({ destination, imgUrl, slug }) => {
   const navigate = useNavigate();
@@ -118,21 +119,24 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen ">
-      <Carousel />
+    <div className="flex flex-row justify-center w-full min-h-screen">
+      <div className="w-[95%]">
+        <SearchHero />
+        <Carousel />
 
-      <CategorySectionWithTabs
-        title="Du Lịch Trong Nước"
-        categories={domesticCategories}
-        categoryList={domesticCategoryList}
-      />
-
-      <div className="bg-gradient-to-r from-orange-100 to-blue-100">
         <CategorySectionWithTabs
-          title="Du Lịch Ngoài Nước"
-          categories={internationalCategories}
-          categoryList={internationalCategoryList}
+          title="Du Lịch Trong Nước"
+          categories={domesticCategories}
+          categoryList={domesticCategoryList}
         />
+
+        <div className="bg-gradient-to-r from-orange-100 to-blue-100">
+          <CategorySectionWithTabs
+            title="Du Lịch Ngoài Nước"
+            categories={internationalCategories}
+            categoryList={internationalCategoryList}
+          />
+        </div>
       </div>
     </div>
   );

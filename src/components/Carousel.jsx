@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import carouselData from "../data/carousel.json";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const carouselRef = useRef(null);
+  const navigate = useNavigate();
 
   const images = carouselData;
 
@@ -60,6 +62,10 @@ const Carousel = () => {
     return () => clearInterval(interval);
   }, [maxIndex]);
 
+  const handleSelectTour = (tourId) => {
+    navigate(`/tour/${tourId}`);
+  };
+
   return (
     <div className="w-full px-4 mt-12 mb-4 bg-gradient-to-br ">
       <div className="mx-auto max-w-7xl">
@@ -111,7 +117,10 @@ const Carousel = () => {
                     }rem)`,
                   }}
                 >
-                  <div className="relative overflow-hidden transition-all duration-300 transform shadow-2xl cursor-pointer group/card rounded-2xl hover:scale-105 hover:shadow-3xl">
+                  <div
+                    onClick={() => handleSelectTour(image.id)}
+                    className="relative overflow-hidden transition-all duration-300 transform shadow-2xl cursor-pointer group/card rounded-2xl hover:scale-105 hover:shadow-3xl"
+                  >
                     {/* Image */}
                     <div className="relative h-64 overflow-hidden md:h-80">
                       <img
