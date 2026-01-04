@@ -14,6 +14,7 @@ import InboxPage from "./pages/InboxPage";
 import HelpPage from "./pages/HelpPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ContactPage from "./pages/ContactPage";
+import PromotionPage from "./pages/PromotionPage";
 function App() {
   return (
     <BrowserRouter>
@@ -27,13 +28,14 @@ function App() {
             <Route path="/filter" element={<FilterTourPage />} />
             <Route path="/tour/:tourId" element={<TourDetail />} />
             <Route path="/love" element={<LoveTour />} />
-            <Route path="/payment" element={<PaymentPage />}></Route>
-            <Route path="/booking/:id" element={<TourBookingPage />}></Route>
-            <Route path="/my-booking" element={<BookingHistoryPage />}></Route>
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/booking/:id" element={<TourBookingPage />} />
+            <Route path="/my-booking" element={<BookingHistoryPage />} />
             <Route path="/inbox" element={<InboxPage />} />
             <Route path="/help" element={<HelpPage />} />
-            <Route path="/profile" element={<ProfilePage />}></Route>
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/promotion" element={<PromotionPage />} />
           </Routes>
         </div>
 
