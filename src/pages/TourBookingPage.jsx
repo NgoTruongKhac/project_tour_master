@@ -9,6 +9,7 @@ const TourBookingPage = () => {
     const [tour, setTour] = useState(null);
 
 
+
     const countries = [
         "Vietnam", "United States", "United Kingdom", "Japan", "South Korea",
         "China", "Taiwan", "Thailand", "Singapore", "Malaysia", "Indonesia",
@@ -31,28 +32,9 @@ const TourBookingPage = () => {
     ];
 
 
-    const getNext7Days = () => {
-        const dates = [];
-        const today = new Date();
 
-        for (let i = 0; i < 7; i++) {
-            const nextDate = new Date(today);
-            nextDate.setDate(today.getDate() + i + 1);
 
-            const formattedDate = new Intl.DateTimeFormat('vi-VN', {
-                weekday: 'long',
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            }).format(nextDate);
-
-            const capitalizedDate = formattedDate.replace(/^t/, 'T');
-            dates.push(capitalizedDate);
-        }
-        return dates;
-    };
-
-    const availableDates = getNext7Days();
+    const availableDates = [];
 
 
     const tourPackages = [
@@ -98,6 +80,9 @@ const TourBookingPage = () => {
                 ...foundTour,
 
             });
+            if (foundTour.departures && foundTour.departures.length > 0) {
+                setBookingInfo(prev => ({ ...prev, travelDate: foundTour.departures[0].date }));
+            }
         } else {
             setTour({
                 title: "Ngủ đêm trên Du thuyền Hạ Long cao cấp - Chùa Bái Đính - KDL Tràng An - Tuyệt Tịnh Cốc",
@@ -306,27 +291,63 @@ const TourBookingPage = () => {
                             <div className="space-y-4 mb-6">
                                 {/* Chọn Ngày Khởi Hành */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-800 mb-2">Ngày khởi hành</label>
-                                    <div className="relative">
-                                        <select
-                                            name="travelDate"
-                                            value={bookingInfo.travelDate}
-                                            onChange={handleInputChange}
-                                            className="appearance-none w-full border border-gray-300 rounded-lg p-3 pr-10 outline-none focus:border-blue-500 bg-white cursor-pointer font-medium text-gray-700"
-                                        >
-                                            {availableDates.map((date, index) => (
-                                                <option key={index} value={date}>{date}</option>
-                                            ))}
-                                        </select>
-                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    <label className="block text-sm font-semibold text-gray-700 mb-3">Chọn ngày khởi
+                                        hành</label>
+                                    {tour.departures && tour.departures.length > 0 ? (
+                                        <div className="flex flex-col gap-3">
+                                            {tour.departures.map((dep, index) => {
+                                                const isSelected = bookingInfo.travelDate === dep.date;
+                                                return (
+                                                    <div
+                                                        key={index}
+                                                        onClick={() => setBookingInfo({
+                                                            ...bookingInfo,
+                                                            travelDate: dep.date
+                                                        })}
+                                                        className={`flex items-center justify-between p-4 border-2 rounded-xl cursor-pointer transition-all ${
+                                                            isSelected
+                                                                ? "border-primary bg-primary/5 shadow-sm"
+                                                                : "border-gray-100 hover:border-primary/30 bg-white"
+                                                        }`}
+                                                    >
+                                                        <div className="flex items-center gap-4">
+                                                            {/* Custom Radio Icon */}
+                                                            <div
+                                                                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                                                                    isSelected ? "border-primary bg-primary" : "border-gray-300"
+                                                                }`}>
+                                                                {isSelected && (
+                                                                    <div
+                                                                        className="w-2 h-2 bg-white rounded-full"></div>
+                                                                )}
+                                                            </div>
+                                                            <div>
+                                                                <p className={`font-bold transition-colors ${isSelected ? "text-primary" : "text-gray-700"}`}>
+                                                                    {dep.date}
+                                                                </p>
+                                                                <p className="text-xs text-gray-500">Khởi hành
+                                                                    từ {tour.departurePoint}</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="text-right">
+                                                            <p className="text-xs text-gray-400">Giá từ</p>
+                                                            <p className="font-bold text-primary">{dep.priceAdult}</p>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
-                                    </div>
+                                    ) : (
+                                        <p className="text-sm text-red-500 italic">Tour hiện chưa có ngày khởi hành cụ
+                                            thể.</p>
+                                    )}
                                 </div>
 
                                 {/* Chọn Gói Tour */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-800 mb-2">Hạng dịch vụ</label>
+                                    <label className="block text-sm font-semibold text-gray-800 mb-2">Hạng dịch
+                                        vụ</label>
                                     <div className="relative">
                                         <select
                                             name="selectedPackage"
@@ -338,12 +359,21 @@ const TourBookingPage = () => {
                                                 <option key={pkg.id} value={pkg.id}>{pkg.name}</option>
                                             ))}
                                         </select>
-                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        <div
+                                            className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                            <svg className="h-4 w-4" fill="none" stroke="currentColor"
+                                                 viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                      d="M19 9l-7 7-7-7"></path>
+                                            </svg>
                                         </div>
                                     </div>
                                     <p className="text-xs text-blue-600 mt-2 flex items-center gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none"
+                                             viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
                                         Gói cao cấp bao gồm nâng hạng phòng và bữa tối VIP.
                                     </p>
                                 </div>
