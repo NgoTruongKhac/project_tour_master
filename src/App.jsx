@@ -14,10 +14,12 @@ import InboxPage from "./pages/InboxPage";
 import HelpPage from "./pages/HelpPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ContactPage from "./pages/ContactPage";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import PromotionPage from "./pages/PromotionPage";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow">
           <Header />

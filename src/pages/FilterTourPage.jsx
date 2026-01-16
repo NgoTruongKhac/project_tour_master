@@ -4,6 +4,7 @@ import { MapPin, Clock3, CalendarCheck } from "lucide-react";
 import DataTours from "../data/data_tours.json";
 import CategoryData from "../data/category_tours.json";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Pagination from "../components/Pagination";
 
 const PRICE_RANGES = {
   1: { min: 0, max: 5000000, label: "Dưới 5 triệu" },
@@ -512,50 +513,11 @@ export default function FilterTourPage() {
           )}
 
           {filteredTours.length > 0 && (
-            <div className="flex justify-center gap-2 pt-6">
-              {/* Nút Previous */}
-              <button
-                onClick={() => paginate(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className={`px-4 py-1 transition border border-gray-300 rounded-lg ${
-                  currentPage === 1
-                    ? "opacity-50 cursor-not-allowed bg-gray-100"
-                    : "hover:bg-gray-50"
-                }`}
-              >
-                ‹
-              </button>
-
-              {/* Các nút số trang */}
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (number) => (
-                  <button
-                    key={number}
-                    onClick={() => paginate(number)}
-                    className={`px-4 py-1 transition border rounded-lg ${
-                      currentPage === number
-                        ? "text-white bg-primary border-primary hover:bg-primary/90"
-                        : "border-gray-300 hover:bg-gray-50"
-                    }`}
-                  >
-                    {number}
-                  </button>
-                )
-              )}
-
-              {/* Nút Next */}
-              <button
-                onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-                className={`px-4 py-1 transition border border-gray-300 rounded-lg ${
-                  currentPage === totalPages
-                    ? "opacity-50 cursor-not-allowed bg-gray-100"
-                    : "hover:bg-gray-50"
-                }`}
-              >
-                ›
-              </button>
-            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={paginate}
+            />
           )}
         </main>
       </div>
