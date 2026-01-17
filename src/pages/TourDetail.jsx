@@ -13,6 +13,7 @@ import {
   MapPin,
   CalendarCheck,
   Heart,
+  Car,
 } from "lucide-react";
 
 export default function TourDetail() {
@@ -35,7 +36,7 @@ export default function TourDetail() {
           priceInfant: firstDeparture.priceInfant,
           transportation: tour.transportation,
         }
-      : null
+      : null,
   );
 
   const [srcImg, setSrcImg] = useState(tour ? tour.media.thumbnail : "");
