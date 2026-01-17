@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import avt from "../assets/profile_avt.png";
+import logoFull from "../assets/logo_full.png";
 import {
   ChevronDown,
   HelpCircle,
@@ -11,9 +13,6 @@ import {
   CreditCard,
   Heart,
 } from "lucide-react";
-import logoFull from "../assets/logo_full.png";
-
-const DEFAULT_AVATAR = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -62,7 +61,7 @@ const Header = () => {
               Hợp tác
             </Link>
             <Link
-              to="/booking"
+              to="/my-booking"
               className="hover:text-primary transition-colors"
             >
               Đặt chỗ
@@ -122,7 +121,7 @@ const Header = () => {
               >
                 <button className="flex items-center gap-2 focus:outline-none hover:bg-gray-50 p-2 rounded-lg transition-all">
                   <img
-                    src={user.avatar || DEFAULT_AVATAR}
+                    src={user.avatar || avt}
                     alt="avatar"
                     className="w-9 h-9 rounded-full object-cover border border-gray-300"
                   />
